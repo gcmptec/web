@@ -1,0 +1,256 @@
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:gcmp_web/theme.dart';
+
+// ─── Section Label (e.g. "HOW IT WORKS") ─────────────────────────
+class SectionLabel extends StatelessWidget {
+  final String text;
+  const SectionLabel(this.text, {super.key});
+
+  @override
+  Widget build(BuildContext context) => Text(
+    text.toUpperCase(),
+    style: GoogleFonts.inter(
+      color: GcmpColors.green,
+      fontSize: 11,
+      fontWeight: FontWeight.w700,
+      letterSpacing: 2.5,
+    ),
+  );
+}
+
+// ─── Green accent button ──────────────────────────────────────────
+class GreenButton extends StatefulWidget {
+  final String label;
+  final VoidCallback onTap;
+  final bool large;
+
+  const GreenButton({super.key, required this.label, required this.onTap, this.large = false});
+
+  @override
+  State<GreenButton> createState() => _GreenButtonState();
+}
+
+class _GreenButtonState extends State<GreenButton> {
+  bool _hover = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      onEnter: (_) => setState(() => _hover = true),
+      onExit: (_) => setState(() => _hover = false),
+      cursor: SystemMouseCursors.click,
+      child: GestureDetector(
+        onTap: widget.onTap,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 150),
+          padding: EdgeInsets.symmetric(
+            horizontal: widget.large ? 32 : 24,
+            vertical: widget.large ? 16 : 12,
+          ),
+          decoration: BoxDecoration(
+            color: _hover ? GcmpColors.greenDim : GcmpColors.green,
+            borderRadius: BorderRadius.circular(9),
+          ),
+          child: Text(
+            widget.label,
+            style: GoogleFonts.inter(
+              color: const Color(0xFF0A0A18),
+              fontSize: widget.large ? 15 : 14,
+              fontWeight: FontWeight.w800,
+              letterSpacing: 0.2,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// ─── Ghost button ─────────────────────────────────────────────────
+class GhostButton extends StatefulWidget {
+  final String label;
+  final VoidCallback onTap;
+
+  const GhostButton({super.key, required this.label, required this.onTap});
+
+  @override
+  State<GhostButton> createState() => _GhostButtonState();
+}
+
+class _GhostButtonState extends State<GhostButton> {
+  bool _hover = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      onEnter: (_) => setState(() => _hover = true),
+      onExit: (_) => setState(() => _hover = false),
+      cursor: SystemMouseCursors.click,
+      child: GestureDetector(
+        onTap: widget.onTap,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 150),
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 15),
+          decoration: BoxDecoration(
+            color: _hover ? Colors.white.withOpacity(0.05) : Colors.transparent,
+            borderRadius: BorderRadius.circular(9),
+            border: Border.all(
+              color: Colors.white.withOpacity(_hover ? 0.25 : 0.12),
+            ),
+          ),
+          child: Text(
+            widget.label,
+            style: GoogleFonts.inter(
+              color: GcmpColors.textPrimary,
+              fontSize: 15,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// ─── Green check circle ───────────────────────────────────────────
+class GreenCheck extends StatelessWidget {
+  const GreenCheck({super.key});
+
+  @override
+  Widget build(BuildContext context) => Container(
+    width: 20,
+    height: 20,
+    decoration: BoxDecoration(
+      shape: BoxShape.circle,
+      color: GcmpColors.green.withOpacity(0.12),
+      border: Border.all(color: GcmpColors.green.withOpacity(0.3)),
+    ),
+    child: const Icon(Icons.check, color: GcmpColors.green, size: 12),
+  );
+}
+
+// ─── Feature icon box ─────────────────────────────────────────────
+class FeatureIconBox extends StatelessWidget {
+  final IconData icon;
+  const FeatureIconBox(this.icon, {super.key});
+
+  @override
+  Widget build(BuildContext context) => Container(
+    width: 44,
+    height: 44,
+    decoration: BoxDecoration(
+      color: GcmpColors.green.withOpacity(0.08),
+      borderRadius: BorderRadius.circular(10),
+      border: Border.all(color: GcmpColors.green.withOpacity(0.2)),
+    ),
+    child: Icon(icon, color: GcmpColors.green, size: 20),
+  );
+}
+
+// ─── Horizontal rule ─────────────────────────────────────────────
+class GcmpDivider extends StatelessWidget {
+  const GcmpDivider({super.key});
+
+  @override
+  Widget build(BuildContext context) => Container(
+    height: 1,
+    color: Colors.white.withOpacity(0.05),
+  );
+}
+
+// ─── Green tag / chip ─────────────────────────────────────────────
+class GreenTag extends StatelessWidget {
+  final String label;
+  const GreenTag(this.label, {super.key});
+
+  @override
+  Widget build(BuildContext context) => Container(
+    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+    decoration: BoxDecoration(
+      color: GcmpColors.green.withOpacity(0.06),
+      borderRadius: BorderRadius.circular(5),
+      border: Border.all(color: GcmpColors.green.withOpacity(0.2)),
+    ),
+    child: Text(
+      label,
+      style: GoogleFonts.inter(
+        color: GcmpColors.greenDim,
+        fontSize: 11,
+        fontWeight: FontWeight.w600,
+      ),
+    ),
+  );
+}
+
+// ─── Status badge ─────────────────────────────────────────────────
+class StatusBadge extends StatelessWidget {
+  final String label;
+  final Color color;
+  const StatusBadge({super.key, required this.label, required this.color});
+
+  @override
+  Widget build(BuildContext context) => Container(
+    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+    decoration: BoxDecoration(
+      color: color.withOpacity(0.1),
+      borderRadius: BorderRadius.circular(5),
+      border: Border.all(color: color.withOpacity(0.25)),
+    ),
+    child: Text(
+      label,
+      style: GoogleFonts.inter(
+        color: color,
+        fontSize: 11,
+        fontWeight: FontWeight.w700,
+        letterSpacing: 0.5,
+      ),
+    ),
+  );
+}
+
+// ─── GCMP Logo widget ─────────────────────────────────────────────
+class GcmpLogo extends StatelessWidget {
+  final double size;
+  const GcmpLogo({super.key, this.size = 32});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Image.asset(
+          'assets/logo_200x200.png',
+          width: size,
+          height: size,
+          filterQuality: FilterQuality.high,
+        ),
+        const SizedBox(width: 10),
+        Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'GCMP',
+              style: GoogleFonts.inter(
+                color: Colors.white,
+                fontSize: 15,
+                fontWeight: FontWeight.w800,
+                letterSpacing: 2.5,
+              ),
+            ),
+            Text(
+              'SECURITY',
+              style: GoogleFonts.inter(
+                color: GcmpColors.green,
+                fontSize: 9,
+                fontWeight: FontWeight.w700,
+                letterSpacing: 2.0,
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}

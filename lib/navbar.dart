@@ -1,0 +1,142 @@
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:gcmp_web/theme.dart';
+
+class NavBar extends StatelessWidget {
+  final ScrollController scrollController;
+  final GlobalKey howKey, featuresKey, whoKey, b2bKey, pilotKey;
+  final bool scrolled;
+
+  const NavBar({
+    super.key,
+    required this.scrollController,
+    required this.howKey,
+    required this.featuresKey,
+    required this.whoKey,
+    required this.b2bKey,
+    required this.pilotKey,
+    required this.scrolled,
+  });
+
+  void _scrollTo(GlobalKey key) {
+    final ctx = key.currentContext;
+    if (ctx != null) {
+      Scrollable.ensureVisible(ctx,
+          duration: const Duration(milliseconds: 600), curve: Curves.easeInOut);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final mobile = MediaQuery.sizeOf(context).width < 768;
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 200),
+      height: 66,
+      decoration: BoxDecoration(
+        color: scrolled
+            ? GcmpColors.bg.withOpacity(0.98)
+            : GcmpColors.bg.withOpacity(0.95),
+        border: Border(
+          bottom: BorderSide(
+            color: scrolled
+                ? GcmpColors.green.withOpacity(0.15)
+                : GcmpColors.green.withOpacity(0.08),
+          ),
+        ),
+        boxShadow: scrolled
+            ? [BoxShadow(color: Colors.black.withOpacity(0.3), blurRadius: 16)]
+            : [],
+      ),
+      padding: EdgeInsets.symmetric(horizontal: mobile ? 24 : 64),
+      child: Row(
+        children: [
+          Image.asset('assets/logo_200x200.png', height: 40),
+          const Spacer(),
+          if (!mobile) ...[
+            _NavLink('How It Works', () => _scrollTo(howKey)),
+            const SizedBox(width: 28),
+            _NavLink('Platform', () => _scrollTo(featuresKey)),
+            const SizedBox(width: 28),
+            _NavLink('Who It\'s For', () => _scrollTo(whoKey)),
+            const SizedBox(width: 28),
+            _NavLink('For Partners', () => _scrollTo(b2bKey)),
+            const SizedBox(width: 28),
+          ],
+          _PilotNavBtn(onTap: () => _scrollTo(pilotKey)),
+        ],
+      ),
+    );
+  }
+}
+
+class _NavLink extends StatefulWidget {
+  final String label;
+  final VoidCallback onTap;
+  const _NavLink(this.label, this.onTap);
+
+  @override
+  State<_NavLink> createState() => _NavLinkState();
+}
+
+class _NavLinkState extends State<_NavLink> {
+  bool _hover = false;
+
+  @override
+  Widget build(BuildContext context) => MouseRegion(
+        onEnter: (_) => setState(() => _hover = true),
+        onExit: (_) => setState(() => _hover = false),
+        cursor: SystemMouseCursors.click,
+        child: GestureDetector(
+          onTap: widget.onTap,
+          child: Text(
+            widget.label,
+            style: GoogleFonts.inter(
+              color: _hover ? GcmpColors.textPrimary : GcmpColors.textSecondary,
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ),
+      );
+}
+
+class _PilotNavBtn extends StatefulWidget {
+  final VoidCallback onTap;
+  const _PilotNavBtn({required this.onTap});
+
+  @override
+  State<_PilotNavBtn> createState() => _PilotNavBtnState();
+}
+
+class _PilotNavBtnState extends State<_PilotNavBtn> {
+  bool _hover = false;
+
+  @override
+  Widget build(BuildContext context) => MouseRegion(
+        onEnter: (_) => setState(() => _hover = true),
+        onExit: (_) => setState(() => _hover = false),
+        cursor: SystemMouseCursors.click,
+        child: GestureDetector(
+          onTap: widget.onTap,
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 150),
+            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 9),
+            decoration: BoxDecoration(
+              color: _hover
+                  ? GcmpColors.green.withOpacity(0.18)
+                  : GcmpColors.green.withOpacity(0.08),
+              borderRadius: BorderRadius.circular(7),
+              border: Border.all(color: GcmpColors.green.withOpacity(0.35)),
+            ),
+            child: Text(
+              'Free 60-Day Pilot →',
+              style: GoogleFonts.inter(
+                color: GcmpColors.green,
+                fontSize: 13,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ),
+        ),
+      );
+}
