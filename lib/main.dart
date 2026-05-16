@@ -19,7 +19,6 @@ void main() async {
   final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  await FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(true);
   FlutterNativeSplash.remove();
   runApp(const GcmpWebApp());
 }
