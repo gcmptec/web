@@ -1,121 +1,214 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gcmp_web/shared.dart';
 import 'package:gcmp_web/theme.dart';
 
-class HeroSection extends StatelessWidget {
+class HeroSection extends StatefulWidget {
   final VoidCallback onPilotTap;
   final VoidCallback onHowTap;
 
   const HeroSection({super.key, required this.onPilotTap, required this.onHowTap});
 
   @override
+  State<HeroSection> createState() => _HeroSectionState();
+}
+
+class _HeroSectionState extends State<HeroSection> {
+  bool _entered = false;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) setState(() => _entered = true);
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     final mobile = MediaQuery.sizeOf(context).width < GcmpColors.kMobile;
-    return Container(
+    return SizedBox(
       width: double.infinity,
-      padding: EdgeInsets.symmetric(
-        vertical: mobile ? 56 : 96,
-        horizontal: mobile ? 24 : 64,
-      ),
-      child: Column(
+      child: Stack(
+        clipBehavior: Clip.none,
         children: [
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
-            decoration: BoxDecoration(
-              color: GcmpColors.green.withValues(alpha: 0.06),
-              borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: GcmpColors.green.withValues(alpha: 0.2)),
-            ),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                _PulseDot(),
-                const SizedBox(width: 8),
-                Text(
-                  'NOW ACCEPTING PILOT PARTNERS IN BOTSWANA',
-                  style: GoogleFonts.inter(
-                    color: GcmpColors.green,
-                    fontSize: mobile ? 9 : 11,
-                    fontWeight: FontWeight.w700,
-                    letterSpacing: 1.0,
+          // Green radial glow — top centre
+          Positioned(
+            top: 0, left: 0, right: 0,
+            child: IgnorePointer(
+              child: Container(
+                height: 500,
+                decoration: BoxDecoration(
+                  gradient: RadialGradient(
+                    center: const Alignment(0, -1),
+                    radius: 1.2,
+                    colors: [GcmpColors.green.withValues(alpha: 0.07), Colors.transparent],
                   ),
                 ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 32),
-          Text(
-            'We Cut Emergency\nWaiting Times',
-            textAlign: TextAlign.center,
-            style: GoogleFonts.inter(
-              color: GcmpColors.textPrimary,
-              fontSize: mobile ? 40 : 62,
-              fontWeight: FontWeight.w900,
-              letterSpacing: mobile ? -1.5 : -2.5,
-              height: 1.05,
-            ),
-          ),
-          RichText(
-            textAlign: TextAlign.center,
-            text: TextSpan(
-              style: GoogleFonts.inter(
-                fontSize: mobile ? 40 : 62,
-                fontWeight: FontWeight.w900,
-                letterSpacing: mobile ? -1.5 : -2.5,
-                height: 1.05,
-              ),
-              children: const [
-                TextSpan(text: 'From '),
-                TextSpan(text: 'Hours ', style: TextStyle(color: GcmpColors.red)),
-                TextSpan(text: 'To ', style: TextStyle(color: GcmpColors.textPrimary)),
-                TextSpan(text: 'Seconds', style: TextStyle(color: GcmpColors.green)),
-              ],
-            ),
-          ),
-          const SizedBox(height: 24),
-          Text(
-            'Emergency response intelligence â€” built in Botswana, built for Africa.',
-            textAlign: TextAlign.center,
-            style: GoogleFonts.inter(
-              color: GcmpColors.green,
-              fontSize: mobile ? 13 : 15,
-              fontWeight: FontWeight.w600,
-              letterSpacing: 0.2,
-              fontStyle: FontStyle.italic,
-            ),
-          ),
-          const SizedBox(height: 14),
-          ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 560),
-            child: Text(
-              'A smart panic button + real-time monitoring dashboard that gives first responders a live picture of what they\'re walking into â€” before they arrive.',
-              textAlign: TextAlign.center,
-              style: GoogleFonts.inter(
-                color: GcmpColors.textSecondary,
-                fontSize: mobile ? 15 : 18,
-                height: 1.75,
               ),
             ),
           ),
-          const SizedBox(height: 44),
-          mobile
-              ? Column(children: [
-                  GreenButton(label: 'Apply for Free 60-Day Pilot', onTap: onPilotTap, large: true),
-                  const SizedBox(height: 14),
-                  GhostButton(label: 'See How It Works', onTap: onHowTap),
-                ])
-              : Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  GreenButton(label: 'Apply for Free 60-Day Pilot', onTap: onPilotTap, large: true),
-                  const SizedBox(width: 14),
-                  GhostButton(label: 'See How It Works', onTap: onHowTap),
-                ]),
-          const SizedBox(height: 60),
-          _ResponseTimeVisual(mobile: mobile),
+          // Blue-tinted glow — top right
+          Positioned(
+            top: 60, right: -60,
+            child: IgnorePointer(
+              child: Container(
+                width: 300, height: 300,
+                decoration: const BoxDecoration(
+                  gradient: RadialGradient(
+                    colors: [Color(0x0A00B4FF), Colors.transparent],
+                  ),
+                ),
+              ),
+            ),
+          ),
+          // Content
+          Container(
+            width: double.infinity,
+            padding: EdgeInsets.symmetric(
+              vertical: mobile ? 56 : 96,
+              horizontal: mobile ? 24 : 64,
+            ),
+            child: Column(
+              children: [
+                // Badge
+                _buildBadge(mobile)
+                    .animate(target: _entered ? 1 : 0)
+                    .fade(duration: 300.ms),
+                const SizedBox(height: 32),
+                // Headline
+                _buildHeadline(mobile)
+                    .animate(target: _entered ? 1 : 0)
+                    .fade(duration: 400.ms, delay: 80.ms)
+                    .slideY(begin: 0.04, end: 0, duration: 400.ms, delay: 80.ms, curve: Curves.easeOut),
+                const SizedBox(height: 24),
+                // Tagline
+                Text(
+                  'Emergency response intelligence — built in Botswana, built for Africa.',
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.inter(
+                    color: GcmpColors.green,
+                    fontSize: mobile ? 13 : 15,
+                    fontWeight: FontWeight.w600,
+                    letterSpacing: 0.2,
+                    fontStyle: FontStyle.italic,
+                  ),
+                ).animate(target: _entered ? 1 : 0).fade(duration: 350.ms, delay: 160.ms),
+                const SizedBox(height: 14),
+                // Body copy
+                ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 560),
+                  child: Text(
+                    'A smart panic button + real-time monitoring dashboard that gives first responders a live picture of what they\'re walking into — before they arrive.',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.inter(
+                      color: GcmpColors.textSecondary,
+                      fontSize: mobile ? 15 : 18,
+                      height: 1.75,
+                    ),
+                  ),
+                ).animate(target: _entered ? 1 : 0).fade(duration: 350.ms, delay: 200.ms),
+                const SizedBox(height: 44),
+                // CTAs
+                _buildButtons(mobile)
+                    .animate(target: _entered ? 1 : 0)
+                    .fade(duration: 300.ms, delay: 240.ms)
+                    .slideY(begin: 0.02, end: 0, duration: 300.ms, delay: 240.ms),
+                const SizedBox(height: 60),
+                // Stats row
+                const _StatsRow()
+                    .animate(target: _entered ? 1 : 0)
+                    .fade(duration: 400.ms, delay: 300.ms)
+                    .slideY(begin: 0.02, end: 0, duration: 400.ms, delay: 300.ms),
+              ],
+            ),
+          ),
         ],
       ),
     );
   }
+
+  Widget _buildBadge(bool mobile) => Container(
+    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+    decoration: BoxDecoration(
+      color: GcmpColors.green.withValues(alpha: 0.06),
+      borderRadius: BorderRadius.circular(20),
+      border: Border.all(color: GcmpColors.green.withValues(alpha: 0.2)),
+    ),
+    child: Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        _PulseDot(),
+        const SizedBox(width: 8),
+        Text(
+          'NOW ACCEPTING PILOT PARTNERS IN BOTSWANA',
+          style: GoogleFonts.inter(
+            color: GcmpColors.green,
+            fontSize: mobile ? 9 : 11,
+            fontWeight: FontWeight.w700,
+            letterSpacing: 1.0,
+          ),
+        ),
+      ],
+    ),
+  );
+
+  Widget _buildHeadline(bool mobile) => Column(
+    children: [
+      Text(
+        'We Cut Emergency\nWaiting Times',
+        textAlign: TextAlign.center,
+        style: GoogleFonts.inter(
+          color: GcmpColors.textPrimary,
+          fontSize: mobile ? 44 : 80,
+          fontWeight: FontWeight.w900,
+          letterSpacing: -3,
+          height: 1.0,
+        ),
+      ),
+      RichText(
+        textAlign: TextAlign.center,
+        text: TextSpan(
+          style: GoogleFonts.inter(
+            fontSize: mobile ? 44 : 80,
+            fontWeight: FontWeight.w900,
+            letterSpacing: -3,
+            height: 1.0,
+          ),
+          children: [
+            const TextSpan(text: 'From '),
+            const TextSpan(text: 'Hours ', style: TextStyle(color: GcmpColors.red)),
+            const TextSpan(text: 'To ', style: TextStyle(color: GcmpColors.textPrimary)),
+            TextSpan(
+              text: 'Seconds',
+              style: TextStyle(
+                color: GcmpColors.green,
+                shadows: [
+                  Shadow(
+                    color: GcmpColors.green.withValues(alpha: 0.4),
+                    blurRadius: 24,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    ],
+  );
+
+  Widget _buildButtons(bool mobile) => mobile
+      ? Column(children: [
+          GreenButton(label: 'Apply for Free 60-Day Pilot', onTap: widget.onPilotTap, large: true),
+          const SizedBox(height: 14),
+          GhostButton(label: 'See How It Works', onTap: widget.onHowTap),
+        ])
+      : Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+          GreenButton(label: 'Apply for Free 60-Day Pilot', onTap: widget.onPilotTap, large: true),
+          const SizedBox(width: 14),
+          GhostButton(label: 'See How It Works', onTap: widget.onHowTap),
+        ]);
 }
 
 class _PulseDot extends StatefulWidget {
@@ -141,7 +234,7 @@ class _PulseDotState extends State<_PulseDot> with SingleTickerProviderStateMixi
   @override
   Widget build(BuildContext context) => AnimatedBuilder(
         animation: _anim,
-        builder: (_, __) => Container(
+        builder: (context, _) => Container(
           width: 7, height: 7,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
@@ -151,60 +244,78 @@ class _PulseDotState extends State<_PulseDot> with SingleTickerProviderStateMixi
       );
 }
 
-class _ResponseTimeVisual extends StatelessWidget {
-  final bool mobile;
-  const _ResponseTimeVisual({required this.mobile});
-
-  @override
-  Widget build(BuildContext context) {
-    final without = _TimeBox(time: 'Hours', label: 'WITHOUT GCMP',
-        sub: 'Blind response, no context', color: GcmpColors.red, mobile: mobile);
-    final arrow = Padding(
-      padding: EdgeInsets.symmetric(horizontal: mobile ? 0 : 24, vertical: mobile ? 12 : 0),
-      child: Text(mobile ? 'â†“' : 'â†’',
-          style: GoogleFonts.inter(color: GcmpColors.textMuted, fontSize: 24)),
-    );
-    final with_ = _TimeBox(time: 'Seconds', label: 'WITH GCMP',
-        sub: 'Live scene context, instant alert', color: GcmpColors.green, mobile: mobile);
-
-    return mobile
-        ? Column(children: [without, arrow, with_])
-        : Row(mainAxisAlignment: MainAxisAlignment.center,
-            children: [without, arrow, with_]);
-  }
-}
-
-class _TimeBox extends StatelessWidget {
-  final String time, label, sub;
-  final Color color;
-  final bool mobile;
-
-  const _TimeBox({required this.time, required this.label, required this.sub,
-      required this.color, required this.mobile});
+class _StatsRow extends StatelessWidget {
+  const _StatsRow();
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: mobile ? double.infinity : 220,
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
       decoration: BoxDecoration(
-        color: color.withValues(alpha: 0.06),
+        color: Colors.white.withValues(alpha: 0.02),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: color.withValues(alpha: 0.2)),
+        border: Border.all(color: Colors.white.withValues(alpha: 0.06)),
       ),
-      child: Column(children: [
-        Text(time, style: GoogleFonts.inter(color: color, fontSize: 38,
-            fontWeight: FontWeight.w900, letterSpacing: -2.0)),
-        const SizedBox(height: 4),
-        Text(label, style: GoogleFonts.inter(color: color, fontSize: 11,
-            fontWeight: FontWeight.w700, letterSpacing: 1.0)),
-        const SizedBox(height: 3),
-        Text(sub, textAlign: TextAlign.center,
-            style: GoogleFonts.inter(color: GcmpColors.textMuted, fontSize: 12)),
-      ]),
+      child: IntrinsicHeight(
+        child: Row(
+          children: [
+            Expanded(child: _StatItem(value: '<30s', label: 'FIRST ALERT SENT', showDivider: true)),
+            Expanded(child: _StatItem(value: '60', label: 'DAY FREE PILOT', showDivider: true, valueColor: GcmpColors.textPrimary)),
+            Expanded(child: _StatItem(value: 'Live', label: 'SCENE CONTEXT', showDivider: false, valueColor: GcmpColors.textPrimary)),
+          ],
+        ),
+      ),
     );
   }
 }
 
+class _StatItem extends StatelessWidget {
+  final String value, label;
+  final bool showDivider;
+  final Color? valueColor;
 
+  const _StatItem({
+    required this.value,
+    required this.label,
+    required this.showDivider,
+    this.valueColor,
+  });
 
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+      decoration: BoxDecoration(
+        border: showDivider
+            ? Border(right: BorderSide(color: Colors.white.withValues(alpha: 0.06)))
+            : null,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            value,
+            style: GoogleFonts.inter(
+              color: valueColor ?? GcmpColors.green,
+              fontSize: 24,
+              fontWeight: FontWeight.w900,
+              letterSpacing: -1,
+              shadows: valueColor == null
+                  ? [Shadow(color: GcmpColors.green.withValues(alpha: 0.3), blurRadius: 16)]
+                  : null,
+            ),
+          ),
+          const SizedBox(height: 2),
+          Text(
+            label,
+            style: GoogleFonts.inter(
+              color: GcmpColors.textMuted,
+              fontSize: 10,
+              fontWeight: FontWeight.w700,
+              letterSpacing: 1,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
