@@ -135,10 +135,11 @@ class _PilotSectionState extends State<PilotSection> {
         'email': _emailCtrl.text.trim(),
         'timestamp': FieldValue.serverTimestamp(),
       });
-      await FirebaseAnalytics.instance.logEvent(name: 'pilot_form_success');
       setState(() { _submitted = true; _loading = false; });
+      // fire-and-forget: logEvent throws on Flutter web — never await it
+      FirebaseAnalytics.instance.logEvent(name: 'pilot_form_success');
     } catch (_) {
-      await FirebaseAnalytics.instance.logEvent(name: 'pilot_form_error');
+      FirebaseAnalytics.instance.logEvent(name: 'pilot_form_error');
       setState(() { _loading = false; _error = true; });
     }
   }
