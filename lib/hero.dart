@@ -307,6 +307,8 @@ class _StatItem extends StatelessWidget {
           const SizedBox(height: 2),
           Text(
             label,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
             style: GoogleFonts.inter(
               color: GcmpColors.textMuted,
               fontSize: 10,
