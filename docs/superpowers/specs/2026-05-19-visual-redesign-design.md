@@ -126,6 +126,46 @@ No color changes. `GcmpColors` stays identical. No new dependencies required.
 
 ---
 
+---
+
+## Bug Fix: Pilot Form Submit Shows No Success State
+
+**File:** `lib/who_and_pilot.dart` — `_submitForm()`
+
+**Symptom:** Clicking submit writes data to Firestore correctly but the success state never appears. The form just freezes.
+
+**Root cause:** `FirebaseAnalytics.instance.logEvent()` throws on Flutter web (same Pigeon/null issue as fixed in commit `46e8a06`). The exception is caught by the outer `catch` block, which sets `_error = true` and never sets `_submitted = true`.
+
+**Fix:** Set `_submitted = true` immediately after the Firestore write succeeds, before the analytics call. Fire analytics without `await` so it cannot block or break the UX:
+
+```dart
+Future<void> _submitForm() async {
+  if (_nameCtrl.text.trim().isEmpty ||
+      _companyCtrl.text.trim().isEmpty ||
+      _role.isEmpty ||
+      _phoneCtrl.text.trim().isEmpty) return;
+
+  setState(() { _loading = true; _error = false; });
+  try {
+    await FirebaseFirestore.instance.collection('pilot_applications').add({
+      'name': _nameCtrl.text.trim(),
+      'company': _companyCtrl.text.trim(),
+      'role': _role,
+      'phone': _phoneCtrl.text.trim(),
+      'email': _emailCtrl.text.trim(),
+      'timestamp': FieldValue.serverTimestamp(),
+    });
+    setState(() { _submitted = true; _loading = false; });         // ← move here
+    FirebaseAnalytics.instance.logEvent(name: 'pilot_form_success'); // ← fire and forget
+  } catch (_) {
+    FirebaseAnalytics.instance.logEvent(name: 'pilot_form_error');   // ← fire and forget
+    setState(() { _loading = false; _error = true; });
+  }
+}
+```
+
+---
+
 ## Out of Scope
 - Content or copy changes
 - New sections
