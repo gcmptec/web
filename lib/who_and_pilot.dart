@@ -22,7 +22,7 @@ class WhoSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.sizeOf(context).width;
-    final mobile = width < 768;
+    final mobile = width < GcmpColors.kMobile;
     final crossAxis = mobile ? 1 : (width < 1024 ? 2 : 3);
     return Container(
       padding: EdgeInsets.symmetric(vertical: 80, horizontal: mobile ? 24 : 64),
