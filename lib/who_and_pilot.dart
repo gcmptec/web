@@ -179,7 +179,14 @@ class _PilotSectionState extends State<PilotSection> {
     final mobile = MediaQuery.sizeOf(context).width < GcmpColors.kMobile;
     return Container(
       decoration: BoxDecoration(
-        color: GcmpColors.green.withValues(alpha: 0.03),
+        gradient: RadialGradient(
+          center: const Alignment(0.7, 0),
+          radius: 1.0,
+          colors: [
+            GcmpColors.green.withValues(alpha: 0.05),
+            Colors.transparent,
+          ],
+        ),
         border: Border.symmetric(
           horizontal: BorderSide(color: GcmpColors.green.withValues(alpha: 0.1)),
         ),
@@ -193,18 +200,31 @@ class _PilotSectionState extends State<PilotSection> {
   Widget _buildDesktop(BuildContext context) => Row(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      Expanded(child: _LeftCopy(context)),
+      Expanded(
+        child: RevealWrapper(
+          child: _LeftCopy(context),
+        ),
+      ),
       const SizedBox(width: 64),
-      SizedBox(width: 400, child: _FormCard()),
+      SizedBox(
+        width: 400,
+        child: RevealWrapper(
+          delay: const Duration(milliseconds: 150),
+          child: _FormCard(),
+        ),
+      ),
     ],
   );
 
   Widget _buildMobile(BuildContext context) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      _LeftCopy(context),
+      RevealWrapper(child: _LeftCopy(context)),
       const SizedBox(height: 40),
-      _FormCard(),
+      RevealWrapper(
+        delay: const Duration(milliseconds: 150),
+        child: _FormCard(),
+      ),
     ],
   );
 
@@ -272,27 +292,51 @@ class _PilotSectionState extends State<PilotSection> {
   }
 
   Widget _FormCard() {
-    return Container(
-      padding: const EdgeInsets.all(32),
-      decoration: BoxDecoration(
-        color: GcmpColors.bg,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: GcmpColors.green.withValues(alpha: 0.15)),
-      ),
-      child: _submitted
-          ? const _SuccessState()
-          : _FormBody(
-              nameCtrl: _nameCtrl,
-              companyCtrl: _companyCtrl,
-              phoneCtrl: _phoneCtrl,
-              emailCtrl: _emailCtrl,
-              role: _role,
-              roles: _roles,
-              loading: _loading,
-              error: _error,
-              onRoleChanged: (v) => setState(() => _role = v ?? ''),
-              onSubmit: _submitForm,
+    return Stack(
+      clipBehavior: Clip.none,
+      children: [
+        Container(
+          padding: const EdgeInsets.all(32),
+          decoration: BoxDecoration(
+            color: GcmpColors.bg,
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(color: GcmpColors.green.withValues(alpha: 0.20)),
+            boxShadow: [
+              BoxShadow(color: Colors.black.withValues(alpha: 0.5), blurRadius: 40),
+              BoxShadow(color: GcmpColors.green.withValues(alpha: 0.04), blurRadius: 20),
+            ],
+          ),
+          child: _submitted
+              ? const _SuccessState()
+              : _FormBody(
+                  nameCtrl: _nameCtrl,
+                  companyCtrl: _companyCtrl,
+                  phoneCtrl: _phoneCtrl,
+                  emailCtrl: _emailCtrl,
+                  role: _role,
+                  roles: _roles,
+                  loading: _loading,
+                  error: _error,
+                  onRoleChanged: (v) => setState(() => _role = v ?? ''),
+                  onSubmit: _submitForm,
+                ),
+        ),
+        Positioned(
+          top: 0, left: 32, right: 32,
+          child: Container(
+            height: 1,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Colors.transparent,
+                  GcmpColors.green.withValues(alpha: 0.4),
+                  Colors.transparent,
+                ],
+              ),
             ),
+          ),
+        ),
+      ],
     );
   }
 }

@@ -10,12 +10,36 @@ class FooterSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final mobile = MediaQuery.sizeOf(context).width < GcmpColors.kMobile;
-    return Container(
-      decoration: BoxDecoration(
-        border: Border(top: BorderSide(color: Colors.white.withValues(alpha: 0.05))),
-      ),
-      padding: EdgeInsets.symmetric(horizontal: mobile ? 24 : 64, vertical: 32),
-      child: mobile ? _buildMobile(context) : _buildDesktop(context),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          height: 1,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Colors.transparent,
+                GcmpColors.green.withValues(alpha: 0.15),
+                Colors.transparent,
+              ],
+            ),
+          ),
+        ),
+        Container(
+          height: 8,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [GcmpColors.green.withValues(alpha: 0.03), Colors.transparent],
+            ),
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: mobile ? 24 : 64, vertical: 32),
+          child: mobile ? _buildMobile(context) : _buildDesktop(context),
+        ),
+      ],
     );
   }
 
