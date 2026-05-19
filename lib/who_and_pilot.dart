@@ -195,12 +195,12 @@ class _PilotSectionState extends State<PilotSection> {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
             decoration: BoxDecoration(
-              color: const Color(0xFFEF4444).withOpacity(0.1),
+              color: GcmpColors.red.withOpacity(0.1),
               borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: const Color(0xFFEF4444).withOpacity(0.3)),
+              border: Border.all(color: GcmpColors.red.withOpacity(0.3)),
             ),
             child: Text('1 Spot Remaining',
-                style: GoogleFonts.inter(color: const Color(0xFFEF4444),
+                style: GoogleFonts.inter(color: GcmpColors.red,
                     fontSize: 11, fontWeight: FontWeight.w700)),
           ),
         ]),
@@ -358,16 +358,16 @@ class _FormBody extends StatelessWidget {
         Container(
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
-            color: const Color(0xFFEF4444).withOpacity(0.08),
+            color: GcmpColors.red.withOpacity(0.08),
             borderRadius: BorderRadius.circular(8),
-            border: Border.all(color: const Color(0xFFEF4444).withOpacity(0.25)),
+            border: Border.all(color: GcmpColors.red.withOpacity(0.25)),
           ),
           child: Row(children: [
-            const Icon(Icons.error_outline, color: Color(0xFFEF4444), size: 16),
+            const Icon(Icons.error_outline, color: GcmpColors.red, size: 16),
             const SizedBox(width: 8),
             Expanded(child: Text(
               'Something went wrong. Please try again or email us directly.',
-              style: GoogleFonts.inter(color: const Color(0xFFEF4444), fontSize: 12),
+              style: GoogleFonts.inter(color: GcmpColors.red, fontSize: 12),
             )),
           ]),
         ),
@@ -416,4 +416,5 @@ class _SuccessState extends StatelessWidget {
     ]);
   }
 }
+
 

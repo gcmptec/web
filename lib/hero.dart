@@ -67,7 +67,7 @@ class HeroSection extends StatelessWidget {
               ),
               children: const [
                 TextSpan(text: 'From '),
-                TextSpan(text: 'Hours ', style: TextStyle(color: Color(0xFFEF4444))),
+                TextSpan(text: 'Hours ', style: TextStyle(color: GcmpColors.red)),
                 TextSpan(text: 'To ', style: TextStyle(color: GcmpColors.textPrimary)),
                 TextSpan(text: 'Seconds', style: TextStyle(color: GcmpColors.green)),
               ],
@@ -158,7 +158,7 @@ class _ResponseTimeVisual extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final without = _TimeBox(time: 'Hours', label: 'WITHOUT GCMP',
-        sub: 'Blind response, no context', color: const Color(0xFFEF4444), mobile: mobile);
+        sub: 'Blind response, no context', color: GcmpColors.red, mobile: mobile);
     final arrow = Padding(
       padding: EdgeInsets.symmetric(horizontal: mobile ? 0 : 24, vertical: mobile ? 12 : 0),
       child: Text(mobile ? 'â†“' : 'â†’',
@@ -205,4 +205,5 @@ class _TimeBox extends StatelessWidget {
     );
   }
 }
+
 
