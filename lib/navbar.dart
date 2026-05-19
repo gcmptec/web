@@ -1,5 +1,6 @@
 ﻿import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:gcmp_web/shared.dart';
 import 'package:gcmp_web/theme.dart';
 
 class NavBar extends StatelessWidget {
@@ -17,14 +18,6 @@ class NavBar extends StatelessWidget {
     required this.pilotKey,
     required this.scrolled,
   });
-
-  void _scrollTo(GlobalKey key) {
-    final ctx = key.currentContext;
-    if (ctx != null) {
-      Scrollable.ensureVisible(ctx,
-          duration: const Duration(milliseconds: 600), curve: Curves.easeInOut);
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,16 +46,16 @@ class NavBar extends StatelessWidget {
           Image.asset('assets/logo_200x200.png', height: 40),
           const Spacer(),
           if (!mobile) ...[
-            _NavLink('How It Works', () => _scrollTo(howKey)),
+            _NavLink('How It Works', () => ScrollHelper.to(howKey)),
             const SizedBox(width: 28),
-            _NavLink('Platform', () => _scrollTo(featuresKey)),
+            _NavLink('Platform', () => ScrollHelper.to(featuresKey)),
             const SizedBox(width: 28),
-            _NavLink('Who It\'s For', () => _scrollTo(whoKey)),
+            _NavLink('Who It\'s For', () => ScrollHelper.to(whoKey)),
             const SizedBox(width: 28),
-            _NavLink('For Partners', () => _scrollTo(b2bKey)),
+            _NavLink('For Partners', () => ScrollHelper.to(b2bKey)),
             const SizedBox(width: 28),
           ],
-          _PilotNavBtn(onTap: () => _scrollTo(pilotKey)),
+          _PilotNavBtn(onTap: () => ScrollHelper.to(pilotKey)),
         ],
       ),
     );

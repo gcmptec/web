@@ -255,3 +255,13 @@ class GcmpLogo extends StatelessWidget {
   }
 }
 
+// ─── Scroll helper ────────────────────────────────────────────────
+class ScrollHelper {
+  static void to(GlobalKey key) {
+    final ctx = key.currentContext;
+    if (ctx != null) {
+      Scrollable.ensureVisible(ctx,
+          duration: const Duration(milliseconds: 600), curve: Curves.easeInOut);
+    }
+  }
+}

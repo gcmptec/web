@@ -65,14 +65,6 @@ class _LandingPageState extends State<LandingPage> {
     if (scrolled != _scrolled) setState(() => _scrolled = scrolled);
   }
 
-  void _scrollTo(GlobalKey key) {
-    final ctx = key.currentContext;
-    if (ctx != null) {
-      Scrollable.ensureVisible(ctx,
-          duration: const Duration(milliseconds: 600), curve: Curves.easeInOut);
-    }
-  }
-
   @override
   void dispose() {
     _scrollCtrl.removeListener(_onScroll);
@@ -103,9 +95,9 @@ class _LandingPageState extends State<LandingPage> {
                   HeroSection(
                     onPilotTap: () {
                       FirebaseAnalytics.instance.logEvent(name: 'hero_pilot_cta_tap');
-                      _scrollTo(_pilotKey);
+                      ScrollHelper.to(_pilotKey);
                     },
-                    onHowTap: () => _scrollTo(_howKey),
+                    onHowTap: () => ScrollHelper.to(_howKey),
                   ),
 
                   const GcmpDivider(),
@@ -130,7 +122,7 @@ class _LandingPageState extends State<LandingPage> {
                     key: _b2bKey,
                     child: B2bSection(onPartnerTap: () {
                       FirebaseAnalytics.instance.logEvent(name: 'partner_cta_tap');
-                      _scrollTo(_pilotKey);
+                      ScrollHelper.to(_pilotKey);
                     }),
                   ),
 
