@@ -1,6 +1,7 @@
 ﻿import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gcmp_web/theme.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 
 // â”€â”€â”€ Section Label (e.g. "HOW IT WORKS") â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 class SectionLabel extends StatelessWidget {
@@ -51,6 +52,12 @@ class _GreenButtonState extends State<GreenButton> {
           decoration: BoxDecoration(
             color: _hover ? GcmpColors.greenDim : GcmpColors.green,
             borderRadius: BorderRadius.circular(9),
+            boxShadow: [
+              BoxShadow(
+                color: GcmpColors.green.withValues(alpha: 0.25),
+                blurRadius: 16,
+              ),
+            ],
           ),
           child: Text(
             widget.label,
@@ -143,6 +150,12 @@ class FeatureIconBox extends StatelessWidget {
       color: GcmpColors.green.withValues(alpha: 0.08),
       borderRadius: BorderRadius.circular(10),
       border: Border.all(color: GcmpColors.green.withValues(alpha: 0.2)),
+      boxShadow: [
+        BoxShadow(
+          color: GcmpColors.green.withValues(alpha: 0.10),
+          blurRadius: 12,
+        ),
+      ],
     ),
     child: Icon(icon, color: GcmpColors.green, size: 20),
   );
@@ -153,9 +166,32 @@ class GcmpDivider extends StatelessWidget {
   const GcmpDivider({super.key});
 
   @override
-  Widget build(BuildContext context) => Container(
-    height: 1,
-    color: Colors.white.withValues(alpha: 0.05),
+  Widget build(BuildContext context) => Column(
+    mainAxisSize: MainAxisSize.min,
+    children: [
+      Container(
+        height: 1,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Colors.transparent,
+              GcmpColors.green.withValues(alpha: 0.15),
+              Colors.transparent,
+            ],
+          ),
+        ),
+      ),
+      Container(
+        height: 8,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [GcmpColors.green.withValues(alpha: 0.03), Colors.transparent],
+          ),
+        ),
+      ),
+    ],
   );
 }
 
@@ -281,6 +317,58 @@ class SectionContainer extends StatelessWidget {
         horizontal: mobile ? 24 : 64,
       ),
       child: child,
+    );
+  }
+}
+
+// ─── Scroll-reveal animation wrapper ──────────────────────────────
+class RevealWrapper extends StatefulWidget {
+  final Widget child;
+  final Duration delay;
+
+  const RevealWrapper({super.key, required this.child, this.delay = Duration.zero});
+
+  @override
+  State<RevealWrapper> createState() => _RevealWrapperState();
+}
+
+class _RevealWrapperState extends State<RevealWrapper> {
+  bool _visible = false;
+  late final Key _detectorKey;
+
+  @override
+  void initState() {
+    super.initState();
+    _detectorKey = UniqueKey();
+  }
+
+  void _onVisibility(VisibilityInfo info) {
+    if (info.visibleFraction > 0.1 && !_visible) {
+      if (widget.delay == Duration.zero) {
+        setState(() => _visible = true);
+      } else {
+        Future.delayed(widget.delay, () {
+          if (mounted) setState(() => _visible = true);
+        });
+      }
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return VisibilityDetector(
+      key: _detectorKey,
+      onVisibilityChanged: _onVisibility,
+      child: AnimatedOpacity(
+        duration: const Duration(milliseconds: 400),
+        opacity: _visible ? 1.0 : 0.0,
+        child: AnimatedSlide(
+          duration: const Duration(milliseconds: 400),
+          offset: _visible ? Offset.zero : const Offset(0, 0.05),
+          curve: Curves.easeOut,
+          child: widget.child,
+        ),
+      ),
     );
   }
 }
