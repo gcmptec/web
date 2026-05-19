@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gcmp_web/shared.dart';
 import 'package:gcmp_web/theme.dart';
@@ -11,7 +11,7 @@ class HeroSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final mobile = MediaQuery.sizeOf(context).width < 768;
+    final mobile = MediaQuery.sizeOf(context).width < GcmpColors.kMobile;
     return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(
@@ -75,7 +75,7 @@ class HeroSection extends StatelessWidget {
           ),
           const SizedBox(height: 24),
           Text(
-            'Emergency response intelligence — built in Botswana, built for Africa.',
+            'Emergency response intelligence â€” built in Botswana, built for Africa.',
             textAlign: TextAlign.center,
             style: GoogleFonts.inter(
               color: GcmpColors.green,
@@ -89,7 +89,7 @@ class HeroSection extends StatelessWidget {
           ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 560),
             child: Text(
-              'A smart panic button + real-time monitoring dashboard that gives first responders a live picture of what they\'re walking into — before they arrive.',
+              'A smart panic button + real-time monitoring dashboard that gives first responders a live picture of what they\'re walking into â€” before they arrive.',
               textAlign: TextAlign.center,
               style: GoogleFonts.inter(
                 color: GcmpColors.textSecondary,
@@ -161,7 +161,7 @@ class _ResponseTimeVisual extends StatelessWidget {
         sub: 'Blind response, no context', color: const Color(0xFFEF4444), mobile: mobile);
     final arrow = Padding(
       padding: EdgeInsets.symmetric(horizontal: mobile ? 0 : 24, vertical: mobile ? 12 : 0),
-      child: Text(mobile ? '↓' : '→',
+      child: Text(mobile ? 'â†“' : 'â†’',
           style: GoogleFonts.inter(color: GcmpColors.textMuted, fontSize: 24)),
     );
     final with_ = _TimeBox(time: 'Seconds', label: 'WITH GCMP',
@@ -205,3 +205,4 @@ class _TimeBox extends StatelessWidget {
     );
   }
 }
+

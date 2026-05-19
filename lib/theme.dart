@@ -13,6 +13,7 @@ class GcmpColors {
   static const textPrimary = Color(0xFFE8F0FF);
   static const textSecondary = Color(0xFF7D92B8);
   static const textMuted = Color(0xFF4A5E7A);
+  static const kMobile = 768.0;
 }
 
 class GcmpTheme {

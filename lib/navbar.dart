@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gcmp_web/theme.dart';
 
@@ -28,7 +28,7 @@ class NavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final mobile = MediaQuery.sizeOf(context).width < 768;
+    final mobile = MediaQuery.sizeOf(context).width < GcmpColors.kMobile;
     return AnimatedContainer(
       duration: const Duration(milliseconds: 200),
       height: 66,
@@ -129,7 +129,7 @@ class _PilotNavBtnState extends State<_PilotNavBtn> {
               border: Border.all(color: GcmpColors.green.withOpacity(0.35)),
             ),
             child: Text(
-              'Free 60-Day Pilot →',
+              'Free 60-Day Pilot â†’',
               style: GoogleFonts.inter(
                 color: GcmpColors.green,
                 fontSize: 13,
@@ -140,3 +140,4 @@ class _PilotNavBtnState extends State<_PilotNavBtn> {
         ),
       );
 }
+

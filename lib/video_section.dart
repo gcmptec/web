@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:gcmp_web/shared.dart';
 import 'package:gcmp_web/theme.dart';
 import 'web_video_stub.dart' if (dart.library.html) 'web_video_impl.dart';
@@ -10,7 +10,7 @@ class VideoSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(
-          vertical: 80, horizontal: MediaQuery.sizeOf(context).width < 768 ? 24 : 64),
+          vertical: 80, horizontal: MediaQuery.sizeOf(context).width < GcmpColors.kMobile ? 24 : 64),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -23,7 +23,7 @@ class VideoSection extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           Text(
-            'Early Access Demo — v1',
+            'Early Access Demo â€” v1',
             style: Theme.of(context).textTheme.bodyLarge,
             textAlign: TextAlign.center,
           ),
@@ -50,3 +50,4 @@ class VideoSection extends StatelessWidget {
     );
   }
 }
+

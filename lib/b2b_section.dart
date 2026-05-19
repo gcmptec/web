@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gcmp_web/shared.dart';
 import 'package:gcmp_web/theme.dart';
@@ -9,7 +9,7 @@ class B2bSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final mobile = MediaQuery.sizeOf(context).width < 768;
+    final mobile = MediaQuery.sizeOf(context).width < GcmpColors.kMobile;
     return Container(
       decoration: BoxDecoration(
         color: GcmpColors.surface,
@@ -43,19 +43,19 @@ class B2bSection extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           Text(
-            'Security companies license GCMP at BWP 15–25 per end-user per month and bundle it into their existing packages at BWP 50–80. No new sales motion. No friction for your clients.',
+            'Security companies license GCMP at BWP 15â€“25 per end-user per month and bundle it into their existing packages at BWP 50â€“80. No new sales motion. No friction for your clients.',
             style: Theme.of(context).textTheme.bodyLarge,
           ),
           const SizedBox(height: 52),
           if (mobile)
             Column(children: [
               _B2bCard(icon: Icons.attach_money_rounded, label: 'LICENSE COST',
-                  heading: 'BWP 15–25\nper user / mo',
-                  body: 'Wholesale pricing for registered security companies. Scales cleanly with your client base — no per-seat minimums.'),
+                  heading: 'BWP 15â€“25\nper user / mo',
+                  body: 'Wholesale pricing for registered security companies. Scales cleanly with your client base â€” no per-seat minimums.'),
               const SizedBox(height: 16),
               _B2bCard(icon: Icons.trending_up_rounded, label: 'YOUR BUNDLE PRICE',
-                  heading: 'BWP 50–80\nper user / mo',
-                  body: 'Add GCMP to your existing service package. The margin sits between BWP 25–55 per user — and it\'s yours to keep.',
+                  heading: 'BWP 50â€“80\nper user / mo',
+                  body: 'Add GCMP to your existing service package. The margin sits between BWP 25â€“55 per user â€” and it\'s yours to keep.',
                   highlight: true),
               const SizedBox(height: 16),
               _B2bCard(icon: Icons.handshake_outlined, label: 'SALES MOTION',
@@ -65,12 +65,12 @@ class B2bSection extends StatelessWidget {
           else
             Row(crossAxisAlignment: CrossAxisAlignment.start, children: const [
               Expanded(child: _B2bCard(icon: Icons.attach_money_rounded, label: 'LICENSE COST',
-                  heading: 'BWP 15–25\nper user / mo',
-                  body: 'Wholesale pricing for registered security companies. Scales cleanly with your client base — no per-seat minimums.')),
+                  heading: 'BWP 15â€“25\nper user / mo',
+                  body: 'Wholesale pricing for registered security companies. Scales cleanly with your client base â€” no per-seat minimums.')),
               SizedBox(width: 16),
               Expanded(child: _B2bCard(icon: Icons.trending_up_rounded, label: 'YOUR BUNDLE PRICE',
-                  heading: 'BWP 50–80\nper user / mo',
-                  body: 'Add GCMP to your existing service package. The margin sits between BWP 25–55 per user — and it\'s yours to keep.',
+                  heading: 'BWP 50â€“80\nper user / mo',
+                  body: 'Add GCMP to your existing service package. The margin sits between BWP 25â€“55 per user â€” and it\'s yours to keep.',
                   highlight: true)),
               SizedBox(width: 16),
               Expanded(child: _B2bCard(icon: Icons.handshake_outlined, label: 'SALES MOTION',
@@ -147,7 +147,7 @@ class _B2bBottomRow extends StatelessWidget {
                 const Icon(Icons.check_circle_outline, color: GcmpColors.green, size: 18),
                 const SizedBox(width: 12),
                 Expanded(child: Text(
-                  'White-label ready · API-first architecture · Dedicated partner support · Botswana-hosted infrastructure',
+                  'White-label ready Â· API-first architecture Â· Dedicated partner support Â· Botswana-hosted infrastructure',
                   style: GoogleFonts.inter(color: GcmpColors.textSecondary, fontSize: 13, height: 1.5),
                 )),
               ]),
@@ -158,7 +158,7 @@ class _B2bBottomRow extends StatelessWidget {
               const Icon(Icons.check_circle_outline, color: GcmpColors.green, size: 18),
               const SizedBox(width: 12),
               Expanded(child: Text(
-                'White-label ready · API-first architecture · Dedicated partner support · Botswana-hosted infrastructure',
+                'White-label ready Â· API-first architecture Â· Dedicated partner support Â· Botswana-hosted infrastructure',
                 style: GoogleFonts.inter(color: GcmpColors.textSecondary, fontSize: 13, height: 1.5),
               )),
               const SizedBox(width: 24),
@@ -195,7 +195,7 @@ class _PartnerCtaState extends State<_PartnerCta> {
             borderRadius: BorderRadius.circular(8),
             border: Border.all(color: GcmpColors.green.withOpacity(0.3)),
           ),
-          child: Text('Become a Partner →',
+          child: Text('Become a Partner â†’',
               style: GoogleFonts.inter(color: GcmpColors.green,
                   fontSize: 13, fontWeight: FontWeight.w700)),
         ),
@@ -203,3 +203,4 @@ class _PartnerCtaState extends State<_PartnerCta> {
     );
   }
 }
+

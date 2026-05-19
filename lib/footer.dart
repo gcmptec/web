@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:gcmp_web/shared.dart';
@@ -9,7 +9,7 @@ class FooterSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final mobile = MediaQuery.sizeOf(context).width < 768;
+    final mobile = MediaQuery.sizeOf(context).width < GcmpColors.kMobile;
     return Container(
       decoration: BoxDecoration(
         border: Border(top: BorderSide(color: Colors.white.withOpacity(0.05))),
@@ -24,7 +24,7 @@ class FooterSection extends StatelessWidget {
       const GcmpLogo(size: 28),
       const SizedBox(width: 16),
       Text(
-        '© 2026 GCMP Security (Pty) Ltd · Gaborone, Botswana',
+        'Â© 2026 GCMP Security (Pty) Ltd Â· Gaborone, Botswana',
         style: GoogleFonts.inter(color: GcmpColors.textMuted, fontSize: 13),
       ),
       const Spacer(),
@@ -53,7 +53,7 @@ class FooterSection extends StatelessWidget {
       ),
       const SizedBox(height: 14),
       Text(
-        '© 2026 GCMP Security (Pty) Ltd · Gaborone, Botswana',
+        'Â© 2026 GCMP Security (Pty) Ltd Â· Gaborone, Botswana',
         textAlign: TextAlign.center,
         style: GoogleFonts.inter(color: GcmpColors.textMuted, fontSize: 12),
       ),
@@ -102,3 +102,4 @@ class _FooterLinkState extends State<_FooterLink> {
     ),
   );
 }
+

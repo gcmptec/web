@@ -1,4 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+﻿import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -6,17 +6,17 @@ import 'package:gcmp_web/shared.dart';
 import 'package:gcmp_web/theme.dart';
 
 
-// ─── Who It's For ─────────────────────────────────────────────────
+// â”€â”€â”€ Who It's For â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 class WhoSection extends StatelessWidget {
   const WhoSection({super.key});
 
   static const _items = [
-    ('🏢', 'Office Parks & Estates', 'Multi-tenant environments where security coverage is shared and response coordination matters.'),
-    ('🏫', 'Schools & Universities', 'Protecting staff and students with rapid, informed response when every second counts.'),
-    ('🏭', 'Warehouses & Facilities', 'Large premises with distributed staff who need a reliable way to call for help fast.'),
-    ('🏪', 'Retail & SMEs', 'Small teams with no dedicated security officer — the panic button is your first line of defence.'),
-    ('🏨', 'Hotels & Hospitality', 'Guest and staff safety managed from a single dashboard with full incident visibility.'),
-    ('🏗️', 'Construction & Sites', 'Remote or high-risk worksites where lone workers need a direct line to help.'),
+    ('ðŸ¢', 'Office Parks & Estates', 'Multi-tenant environments where security coverage is shared and response coordination matters.'),
+    ('ðŸ«', 'Schools & Universities', 'Protecting staff and students with rapid, informed response when every second counts.'),
+    ('ðŸ­', 'Warehouses & Facilities', 'Large premises with distributed staff who need a reliable way to call for help fast.'),
+    ('ðŸª', 'Retail & SMEs', 'Small teams with no dedicated security officer â€” the panic button is your first line of defence.'),
+    ('ðŸ¨', 'Hotels & Hospitality', 'Guest and staff safety managed from a single dashboard with full incident visibility.'),
+    ('ðŸ—ï¸', 'Construction & Sites', 'Remote or high-risk worksites where lone workers need a direct line to help.'),
   ];
 
   @override
@@ -37,7 +37,7 @@ class WhoSection extends StatelessWidget {
           ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 480),
             child: Text(
-              'If your staff, assets, or premises are at risk — GCMP gives you and your responders the edge they need.',
+              'If your staff, assets, or premises are at risk â€” GCMP gives you and your responders the edge they need.',
               style: Theme.of(context).textTheme.bodyLarge,
             ),
           ),
@@ -97,7 +97,7 @@ class _WhoCard extends StatelessWidget {
   }
 }
 
-// ─── Pilot Signup Section ─────────────────────────────────────────
+// â”€â”€â”€ Pilot Signup Section â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 class PilotSection extends StatefulWidget {
   const PilotSection({super.key});
 
@@ -153,7 +153,7 @@ class _PilotSectionState extends State<PilotSection> {
 
   @override
   Widget build(BuildContext context) {
-    final mobile = MediaQuery.sizeOf(context).width < 768;
+    final mobile = MediaQuery.sizeOf(context).width < GcmpColors.kMobile;
     return Container(
       decoration: BoxDecoration(
         color: GcmpColors.green.withOpacity(0.03),
@@ -185,7 +185,7 @@ class _PilotSectionState extends State<PilotSection> {
   );
 
   Widget _LeftCopy(BuildContext context) {
-    final mobile = MediaQuery.sizeOf(context).width < 768;
+    final mobile = MediaQuery.sizeOf(context).width < GcmpColors.kMobile;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -228,11 +228,11 @@ class _PilotSectionState extends State<PilotSection> {
         ),
         const SizedBox(height: 36),
         ...[
-          'Full platform access — panic button + dashboard — at no cost',
+          'Full platform access â€” panic button + dashboard â€” at no cost',
           'Hands-on onboarding and setup support from the founder',
           '60 days of real deployment data and incident reporting',
           'Direct input into the product roadmap',
-          'No lock-in — decide at the end of 60 days',
+          'No lock-in â€” decide at the end of 60 days',
         ].map((item) => Padding(
           padding: const EdgeInsets.only(bottom: 14),
           child: Row(children: [
@@ -351,7 +351,7 @@ class _FormBody extends StatelessWidget {
                 child: const Center(child: SizedBox(width: 20, height: 20,
                     child: CircularProgressIndicator(strokeWidth: 2.5,
                         color: Color(0xFF0A0A18)))))
-            : GreenButton(label: 'Apply for Free Pilot →', onTap: onSubmit, large: true),
+            : GreenButton(label: 'Apply for Free Pilot â†’', onTap: onSubmit, large: true),
       ),
       if (error) ...[
         const SizedBox(height: 12),
@@ -416,3 +416,4 @@ class _SuccessState extends StatelessWidget {
     ]);
   }
 }
+

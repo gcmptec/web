@@ -1,15 +1,15 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gcmp_web/shared.dart';
 import 'package:gcmp_web/theme.dart';
 
-// ─── How It Works ─────────────────────────────────────────────────
+// â”€â”€â”€ How It Works â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 class HowItWorksSection extends StatelessWidget {
   const HowItWorksSection({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final mobile = MediaQuery.sizeOf(context).width < 768;
+    final mobile = MediaQuery.sizeOf(context).width < GcmpColors.kMobile;
     return Container(
       padding: EdgeInsets.symmetric(vertical: 80, horizontal: mobile ? 24 : 64),
       child: Column(
@@ -23,7 +23,7 @@ class HowItWorksSection extends StatelessWidget {
           ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 480),
             child: Text(
-              'From the moment an incident is triggered to your first responder arriving on scene — fully informed.',
+              'From the moment an incident is triggered to your first responder arriving on scene â€” fully informed.',
               style: Theme.of(context).textTheme.bodyLarge,
             ),
           ),
@@ -39,29 +39,29 @@ class HowItWorksSection extends StatelessWidget {
                   ? Column(children: [
                       _StepCard(number: '01', icon: Icons.warning_amber_rounded,
                           title: 'Panic Button Triggered',
-                          body: 'A staff member or guard triggers the smart panic button — mobile or physical device — the moment an incident occurs.',
+                          body: 'A staff member or guard triggers the smart panic button â€” mobile or physical device â€” the moment an incident occurs.',
                           isLast: false, mobile: true),
                       _StepCard(number: '02', icon: Icons.send_rounded,
                           title: 'Alert + Context Sent Instantly',
-                          body: 'First responders receive not just a location — but a live snapshot of the scene so they know exactly what they\'re walking into.',
+                          body: 'First responders receive not just a location â€” but a live snapshot of the scene so they know exactly what they\'re walking into.',
                           isLast: false, mobile: true),
                       _StepCard(number: '03', icon: Icons.dashboard_outlined,
                           title: 'Monitor From Your Dashboard',
-                          body: 'Security and operations managers track every incident in real time — logs, status, and full response history in one place.',
+                          body: 'Security and operations managers track every incident in real time â€” logs, status, and full response history in one place.',
                           isLast: true, mobile: true),
                     ])
                   : Row(children: [
                       _StepCard(number: '01', icon: Icons.warning_amber_rounded,
                           title: 'Panic Button Triggered',
-                          body: 'A staff member or guard triggers the smart panic button — mobile or physical device — the moment an incident occurs.',
+                          body: 'A staff member or guard triggers the smart panic button â€” mobile or physical device â€” the moment an incident occurs.',
                           isLast: false, mobile: false),
                       _StepCard(number: '02', icon: Icons.send_rounded,
                           title: 'Alert + Context Sent Instantly',
-                          body: 'First responders receive not just a location — but a live snapshot of the scene so they know exactly what they\'re walking into.',
+                          body: 'First responders receive not just a location â€” but a live snapshot of the scene so they know exactly what they\'re walking into.',
                           isLast: false, mobile: false),
                       _StepCard(number: '03', icon: Icons.dashboard_outlined,
                           title: 'Monitor From Your Dashboard',
-                          body: 'Security and operations managers track every incident in real time — logs, status, and full response history in one place.',
+                          body: 'Security and operations managers track every incident in real time â€” logs, status, and full response history in one place.',
                           isLast: true, mobile: false),
                     ]),
             ),
@@ -107,13 +107,13 @@ class _StepCard extends StatelessWidget {
   }
 }
 
-// ─── Features Section ─────────────────────────────────────────────
+// â”€â”€â”€ Features Section â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 class FeaturesSection extends StatelessWidget {
   const FeaturesSection({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final mobile = MediaQuery.sizeOf(context).width < 768;
+    final mobile = MediaQuery.sizeOf(context).width < GcmpColors.kMobile;
     return Container(
       padding: EdgeInsets.symmetric(vertical: 80, horizontal: mobile ? 24 : 64),
       child: Column(
@@ -128,24 +128,24 @@ class FeaturesSection extends StatelessWidget {
             Column(children: [
               _FeatureCard(icon: Icons.warning_amber_rounded,
                   title: 'Smart Panic Button',
-                  body: 'A discreet, reliable alert trigger for your staff. Works on mobile and physical hardware. Sends the alert with live scene context attached — not a blank location ping.',
+                  body: 'A discreet, reliable alert trigger for your staff. Works on mobile and physical hardware. Sends the alert with live scene context attached â€” not a blank location ping.',
                   tags: const ['Mobile app', 'Instant alert', 'Scene capture', 'GPS location']),
               const SizedBox(height: 20),
               _FeatureCard(icon: Icons.monitor_outlined,
                   title: 'Real-Time Monitoring Dashboard',
-                  body: 'A web dashboard giving security managers full visibility — live incident feed, guard status, alert history, and response tracking. Built for Botswana businesses.',
+                  body: 'A web dashboard giving security managers full visibility â€” live incident feed, guard status, alert history, and response tracking. Built for Botswana businesses.',
                   tags: const ['Web dashboard', 'Live incident feed', 'Response tracking', 'Audit log']),
             ])
           else
             Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Expanded(child: _FeatureCard(icon: Icons.warning_amber_rounded,
                   title: 'Smart Panic Button',
-                  body: 'A discreet, reliable alert trigger for your staff. Works on mobile and physical hardware. Sends the alert with live scene context attached — not a blank location ping.',
+                  body: 'A discreet, reliable alert trigger for your staff. Works on mobile and physical hardware. Sends the alert with live scene context attached â€” not a blank location ping.',
                   tags: const ['Mobile app', 'Instant alert', 'Scene capture', 'GPS location'])),
               const SizedBox(width: 20),
               Expanded(child: _FeatureCard(icon: Icons.monitor_outlined,
                   title: 'Real-Time Monitoring Dashboard',
-                  body: 'A web dashboard giving security managers full visibility — live incident feed, guard status, alert history, and response tracking. Built for Botswana businesses.',
+                  body: 'A web dashboard giving security managers full visibility â€” live incident feed, guard status, alert history, and response tracking. Built for Botswana businesses.',
                   tags: const ['Web dashboard', 'Live incident feed', 'Response tracking', 'Audit log'])),
             ]),
         ],
@@ -200,3 +200,4 @@ class _FeatureCardState extends State<_FeatureCard> {
     );
   }
 }
+
