@@ -265,3 +265,22 @@ class ScrollHelper {
     }
   }
 }
+
+// ─── Standard section padding container ───────────────────────────
+class SectionContainer extends StatelessWidget {
+  final Widget child;
+
+  const SectionContainer({super.key, required this.child});
+
+  @override
+  Widget build(BuildContext context) {
+    final mobile = MediaQuery.sizeOf(context).width < GcmpColors.kMobile;
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        vertical: 80,
+        horizontal: mobile ? 24 : 64,
+      ),
+      child: child,
+    );
+  }
+}
