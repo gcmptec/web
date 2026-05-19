@@ -17,69 +17,70 @@ class B2bSection extends StatelessWidget {
           horizontal: BorderSide(color: GcmpColors.green.withValues(alpha: 0.08)),
         ),
       ),
-      padding: EdgeInsets.symmetric(vertical: 80, horizontal: mobile ? 24 : 64),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SectionLabel('For Security Companies'),
-          const SizedBox(height: 14),
-          RichText(
-            text: TextSpan(
-              style: GoogleFonts.inter(
-                fontSize: mobile ? 28 : 40,
-                fontWeight: FontWeight.w800,
-                letterSpacing: -1.5,
-                height: 1.15,
-                color: GcmpColors.textPrimary,
-              ),
-              children: const [
-                TextSpan(text: 'You bring the clients.\n'),
-                TextSpan(
-                  text: 'We bring the intelligence layer.',
-                  style: TextStyle(color: GcmpColors.green),
+      child: SectionContainer(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SectionLabel('For Security Companies'),
+            const SizedBox(height: 14),
+            RichText(
+              text: TextSpan(
+                style: GoogleFonts.inter(
+                  fontSize: mobile ? 28 : 40,
+                  fontWeight: FontWeight.w800,
+                  letterSpacing: -1.5,
+                  height: 1.15,
+                  color: GcmpColors.textPrimary,
                 ),
-              ],
+                children: const [
+                  TextSpan(text: 'You bring the clients.\n'),
+                  TextSpan(
+                    text: 'We bring the intelligence layer.',
+                    style: TextStyle(color: GcmpColors.green),
+                  ),
+                ],
+              ),
             ),
-          ),
-          const SizedBox(height: 20),
-          Text(
-            'Security companies license GCMP at BWP 15â€“25 per end-user per month and bundle it into their existing packages at BWP 50â€“80. No new sales motion. No friction for your clients.',
-            style: Theme.of(context).textTheme.bodyLarge,
-          ),
-          const SizedBox(height: 52),
-          if (mobile)
-            Column(children: [
-              _B2bCard(icon: Icons.attach_money_rounded, label: 'LICENSE COST',
-                  heading: 'BWP 15â€“25\nper user / mo',
-                  body: 'Wholesale pricing for registered security companies. Scales cleanly with your client base â€” no per-seat minimums.'),
-              const SizedBox(height: 16),
-              _B2bCard(icon: Icons.trending_up_rounded, label: 'YOUR BUNDLE PRICE',
-                  heading: 'BWP 50â€“80\nper user / mo',
-                  body: 'Add GCMP to your existing service package. The margin sits between BWP 25â€“55 per user â€” and it\'s yours to keep.',
-                  highlight: true),
-              const SizedBox(height: 16),
-              _B2bCard(icon: Icons.handshake_outlined, label: 'SALES MOTION',
-                  heading: 'Zero new\nmotion needed',
-                  body: 'Your clients are already bought in. GCMP layers onto your existing contracts. No new pitch. No new procurement cycle.'),
-            ])
-          else
-            Row(crossAxisAlignment: CrossAxisAlignment.start, children: const [
-              Expanded(child: _B2bCard(icon: Icons.attach_money_rounded, label: 'LICENSE COST',
-                  heading: 'BWP 15â€“25\nper user / mo',
-                  body: 'Wholesale pricing for registered security companies. Scales cleanly with your client base â€” no per-seat minimums.')),
-              SizedBox(width: 16),
-              Expanded(child: _B2bCard(icon: Icons.trending_up_rounded, label: 'YOUR BUNDLE PRICE',
-                  heading: 'BWP 50â€“80\nper user / mo',
-                  body: 'Add GCMP to your existing service package. The margin sits between BWP 25â€“55 per user â€” and it\'s yours to keep.',
-                  highlight: true)),
-              SizedBox(width: 16),
-              Expanded(child: _B2bCard(icon: Icons.handshake_outlined, label: 'SALES MOTION',
-                  heading: 'Zero new\nmotion needed',
-                  body: 'Your clients are already bought in. GCMP layers onto your existing contracts. No new pitch. No new procurement cycle.')),
-            ]),
-          const SizedBox(height: 44),
-          _B2bBottomRow(onPartnerTap: onPartnerTap, mobile: mobile),
-        ],
+            const SizedBox(height: 20),
+            Text(
+              'Security companies license GCMP at BWP 15–25 per end-user per month and bundle it into their existing packages at BWP 50–80. No new sales motion. No friction for your clients.',
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
+            const SizedBox(height: 52),
+            if (mobile)
+              Column(children: [
+                _B2bCard(icon: Icons.attach_money_rounded, label: 'LICENSE COST',
+                    heading: 'BWP 15–25\nper user / mo',
+                    body: 'Wholesale pricing for registered security companies. Scales cleanly with your client base – no per-seat minimums.'),
+                const SizedBox(height: 16),
+                _B2bCard(icon: Icons.trending_up_rounded, label: 'YOUR BUNDLE PRICE',
+                    heading: 'BWP 50–80\nper user / mo',
+                    body: 'Add GCMP to your existing service package. The margin sits between BWP 25–55 per user – and it\'s yours to keep.',
+                    highlight: true),
+                const SizedBox(height: 16),
+                _B2bCard(icon: Icons.handshake_outlined, label: 'SALES MOTION',
+                    heading: 'Zero new\nmotion needed',
+                    body: 'Your clients are already bought in. GCMP layers onto your existing contracts. No new pitch. No new procurement cycle.'),
+              ])
+            else
+              Row(crossAxisAlignment: CrossAxisAlignment.start, children: const [
+                Expanded(child: _B2bCard(icon: Icons.attach_money_rounded, label: 'LICENSE COST',
+                    heading: 'BWP 15–25\nper user / mo',
+                    body: 'Wholesale pricing for registered security companies. Scales cleanly with your client base – no per-seat minimums.')),
+                SizedBox(width: 16),
+                Expanded(child: _B2bCard(icon: Icons.trending_up_rounded, label: 'YOUR BUNDLE PRICE',
+                    heading: 'BWP 50–80\nper user / mo',
+                    body: 'Add GCMP to your existing service package. The margin sits between BWP 25–55 per user – and it\'s yours to keep.',
+                    highlight: true)),
+                SizedBox(width: 16),
+                Expanded(child: _B2bCard(icon: Icons.handshake_outlined, label: 'SALES MOTION',
+                    heading: 'Zero new\nmotion needed',
+                    body: 'Your clients are already bought in. GCMP layers onto your existing contracts. No new pitch. No new procurement cycle.')),
+              ]),
+            const SizedBox(height: 44),
+            _B2bBottomRow(onPartnerTap: onPartnerTap, mobile: mobile),
+          ],
+        ),
       ),
     );
   }

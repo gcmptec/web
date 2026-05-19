@@ -24,8 +24,7 @@ class WhoSection extends StatelessWidget {
     final width = MediaQuery.sizeOf(context).width;
     final mobile = width < GcmpColors.kMobile;
     final crossAxis = mobile ? 1 : (width < 1024 ? 2 : 3);
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 80, horizontal: mobile ? 24 : 64),
+    return SectionContainer(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -161,8 +160,9 @@ class _PilotSectionState extends State<PilotSection> {
           horizontal: BorderSide(color: GcmpColors.green.withValues(alpha: 0.1)),
         ),
       ),
-      padding: EdgeInsets.symmetric(vertical: 80, horizontal: mobile ? 24 : 64),
-      child: mobile ? _buildMobile(context) : _buildDesktop(context),
+      child: SectionContainer(
+        child: mobile ? _buildMobile(context) : _buildDesktop(context),
+      ),
     );
   }
 

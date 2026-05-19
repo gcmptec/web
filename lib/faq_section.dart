@@ -35,9 +35,7 @@ class FaqSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final mobile = MediaQuery.sizeOf(context).width < GcmpColors.kMobile;
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 80, horizontal: mobile ? 24 : 64),
+    return SectionContainer(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
