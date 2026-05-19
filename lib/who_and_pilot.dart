@@ -28,16 +28,23 @@ class WhoSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SectionLabel('Who It\'s For'),
-          const SizedBox(height: 12),
-          Text('Built for Botswana businesses',
-              style: Theme.of(context).textTheme.displayMedium),
-          const SizedBox(height: 14),
-          ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 480),
-            child: Text(
-              'If your staff, assets, or premises are at risk â€” GCMP gives you and your responders the edge they need.',
-              style: Theme.of(context).textTheme.bodyLarge,
+          RevealWrapper(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SectionLabel('Who It\'s For'),
+                const SizedBox(height: 12),
+                Text('Built for Botswana businesses',
+                    style: Theme.of(context).textTheme.displayMedium),
+                const SizedBox(height: 14),
+                ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 480),
+                  child: Text(
+                    'If your staff, assets, or premises are at risk — GCMP gives you and your responders the edge they need.',
+                    style: Theme.of(context).textTheme.bodyLarge,
+                  ),
+                ),
+              ],
             ),
           ),
           const SizedBox(height: 44),
@@ -48,9 +55,14 @@ class WhoSection extends StatelessWidget {
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             childAspectRatio: mobile ? 3.0 : 2.3,
-            children: _items
-                .map((item) => _WhoCard(emoji: item.$1, title: item.$2, body: item.$3))
-                .toList(),
+            children: List.generate(_items.length, (i) => RevealWrapper(
+              delay: Duration(milliseconds: 80 * i + 100),
+              child: _WhoCard(
+                emoji: _items[i].$1,
+                title: _items[i].$2,
+                body: _items[i].$3,
+              ),
+            )),
           ),
         ],
       ),
@@ -69,12 +81,23 @@ class _WhoCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: GcmpColors.card,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.white.withValues(alpha: 0.06)),
+        border: Border.all(color: GcmpColors.green.withValues(alpha: 0.10)),
+        boxShadow: [
+          BoxShadow(color: GcmpColors.green.withValues(alpha: 0.04), blurRadius: 16),
+        ],
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(emoji, style: const TextStyle(fontSize: 22)),
+          Container(
+            width: 38,
+            height: 38,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: GcmpColors.green.withValues(alpha: 0.06),
+            ),
+            child: Center(child: Text(emoji, style: const TextStyle(fontSize: 20))),
+          ),
           const SizedBox(width: 14),
           Expanded(
             child: Column(

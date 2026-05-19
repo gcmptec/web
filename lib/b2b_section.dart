@@ -21,64 +21,110 @@ class B2bSection extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SectionLabel('For Security Companies'),
-            const SizedBox(height: 14),
-            RichText(
-              text: TextSpan(
-                style: GoogleFonts.inter(
-                  fontSize: mobile ? 28 : 40,
-                  fontWeight: FontWeight.w800,
-                  letterSpacing: -1.5,
-                  height: 1.15,
-                  color: GcmpColors.textPrimary,
-                ),
-                children: const [
-                  TextSpan(text: 'You bring the clients.\n'),
-                  TextSpan(
-                    text: 'We bring the intelligence layer.',
-                    style: TextStyle(color: GcmpColors.green),
+            RevealWrapper(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SectionLabel('For Security Companies'),
+                  const SizedBox(height: 14),
+                  RichText(
+                    text: TextSpan(
+                      style: GoogleFonts.inter(
+                        fontSize: mobile ? 28 : 40,
+                        fontWeight: FontWeight.w800,
+                        letterSpacing: -1.5,
+                        height: 1.15,
+                        color: GcmpColors.textPrimary,
+                      ),
+                      children: const [
+                        TextSpan(text: 'You bring the clients.\n'),
+                        TextSpan(
+                          text: 'We bring the intelligence layer.',
+                          style: TextStyle(color: GcmpColors.green),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  Text(
+                    'Security companies license GCMP at BWP 15–25 per end-user per month and bundle it into their existing packages at BWP 50–80. No new sales motion. No friction for your clients.',
+                    style: Theme.of(context).textTheme.bodyLarge,
                   ),
                 ],
               ),
             ),
-            const SizedBox(height: 20),
-            Text(
-              'Security companies license GCMP at BWP 15–25 per end-user per month and bundle it into their existing packages at BWP 50–80. No new sales motion. No friction for your clients.',
-              style: Theme.of(context).textTheme.bodyLarge,
-            ),
             const SizedBox(height: 52),
             if (mobile)
               Column(children: [
-                _B2bCard(icon: Icons.attach_money_rounded, label: 'LICENSE COST',
+                RevealWrapper(
+                  delay: const Duration(milliseconds: 120),
+                  child: _B2bCard(
+                    icon: Icons.attach_money_rounded, label: 'LICENSE COST',
                     heading: 'BWP 15–25\nper user / mo',
-                    body: 'Wholesale pricing for registered security companies. Scales cleanly with your client base – no per-seat minimums.'),
+                    body: 'Wholesale pricing for registered security companies. Scales cleanly with your client base – no per-seat minimums.',
+                  ),
+                ),
                 const SizedBox(height: 16),
-                _B2bCard(icon: Icons.trending_up_rounded, label: 'YOUR BUNDLE PRICE',
+                RevealWrapper(
+                  delay: const Duration(milliseconds: 240),
+                  child: _B2bCard(
+                    icon: Icons.trending_up_rounded, label: 'YOUR BUNDLE PRICE',
                     heading: 'BWP 50–80\nper user / mo',
                     body: 'Add GCMP to your existing service package. The margin sits between BWP 25–55 per user – and it\'s yours to keep.',
-                    highlight: true),
+                    highlight: true,
+                  ),
+                ),
                 const SizedBox(height: 16),
-                _B2bCard(icon: Icons.handshake_outlined, label: 'SALES MOTION',
+                RevealWrapper(
+                  delay: const Duration(milliseconds: 360),
+                  child: _B2bCard(
+                    icon: Icons.handshake_outlined, label: 'SALES MOTION',
                     heading: 'Zero new\nmotion needed',
-                    body: 'Your clients are already bought in. GCMP layers onto your existing contracts. No new pitch. No new procurement cycle.'),
+                    body: 'Your clients are already bought in. GCMP layers onto your existing contracts. No new pitch. No new procurement cycle.',
+                  ),
+                ),
               ])
             else
-              Row(crossAxisAlignment: CrossAxisAlignment.start, children: const [
-                Expanded(child: _B2bCard(icon: Icons.attach_money_rounded, label: 'LICENSE COST',
-                    heading: 'BWP 15–25\nper user / mo',
-                    body: 'Wholesale pricing for registered security companies. Scales cleanly with your client base – no per-seat minimums.')),
-                SizedBox(width: 16),
-                Expanded(child: _B2bCard(icon: Icons.trending_up_rounded, label: 'YOUR BUNDLE PRICE',
-                    heading: 'BWP 50–80\nper user / mo',
-                    body: 'Add GCMP to your existing service package. The margin sits between BWP 25–55 per user – and it\'s yours to keep.',
-                    highlight: true)),
-                SizedBox(width: 16),
-                Expanded(child: _B2bCard(icon: Icons.handshake_outlined, label: 'SALES MOTION',
-                    heading: 'Zero new\nmotion needed',
-                    body: 'Your clients are already bought in. GCMP layers onto your existing contracts. No new pitch. No new procurement cycle.')),
+              Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Expanded(
+                  child: RevealWrapper(
+                    delay: const Duration(milliseconds: 120),
+                    child: _B2bCard(
+                      icon: Icons.attach_money_rounded, label: 'LICENSE COST',
+                      heading: 'BWP 15–25\nper user / mo',
+                      body: 'Wholesale pricing for registered security companies. Scales cleanly with your client base – no per-seat minimums.',
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 16),
+                Expanded(
+                  child: RevealWrapper(
+                    delay: const Duration(milliseconds: 240),
+                    child: _B2bCard(
+                      icon: Icons.trending_up_rounded, label: 'YOUR BUNDLE PRICE',
+                      heading: 'BWP 50–80\nper user / mo',
+                      body: 'Add GCMP to your existing service package. The margin sits between BWP 25–55 per user – and it\'s yours to keep.',
+                      highlight: true,
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 16),
+                Expanded(
+                  child: RevealWrapper(
+                    delay: const Duration(milliseconds: 360),
+                    child: _B2bCard(
+                      icon: Icons.handshake_outlined, label: 'SALES MOTION',
+                      heading: 'Zero new\nmotion needed',
+                      body: 'Your clients are already bought in. GCMP layers onto your existing contracts. No new pitch. No new procurement cycle.',
+                    ),
+                  ),
+                ),
               ]),
             const SizedBox(height: 44),
-            _B2bBottomRow(onPartnerTap: onPartnerTap, mobile: mobile),
+            RevealWrapper(
+              delay: const Duration(milliseconds: 480),
+              child: _B2bBottomRow(onPartnerTap: onPartnerTap, mobile: mobile),
+            ),
           ],
         ),
       ),
@@ -99,32 +145,64 @@ class _B2bCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(28),
-      decoration: BoxDecoration(
-        color: highlight ? GcmpColors.green.withValues(alpha: 0.05) : GcmpColors.card,
-        borderRadius: BorderRadius.circular(14),
-        border: Border.all(
-          color: highlight ? GcmpColors.green.withValues(alpha: 0.3) : Colors.white.withValues(alpha: 0.06),
-        ),
-      ),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Row(children: [
-          Container(width: 40, height: 40,
-              decoration: BoxDecoration(color: GcmpColors.green.withValues(alpha: 0.1),
+    return Stack(
+      clipBehavior: Clip.none,
+      children: [
+        Container(
+          padding: const EdgeInsets.all(28),
+          decoration: BoxDecoration(
+            color: highlight ? GcmpColors.green.withValues(alpha: 0.05) : GcmpColors.card,
+            borderRadius: BorderRadius.circular(14),
+            border: Border.all(
+              color: highlight
+                  ? GcmpColors.green.withValues(alpha: 0.30)
+                  : Colors.white.withValues(alpha: 0.06),
+            ),
+            boxShadow: highlight
+                ? [BoxShadow(color: GcmpColors.green.withValues(alpha: 0.12), blurRadius: 32)]
+                : null,
+          ),
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Row(children: [
+              Container(
+                width: 40, height: 40,
+                decoration: BoxDecoration(
+                  color: GcmpColors.green.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(9),
-                  border: Border.all(color: GcmpColors.green.withValues(alpha: 0.2))),
-              child: Icon(icon, color: GcmpColors.green, size: 18)),
-          const SizedBox(width: 12),
-          Text(label, style: GoogleFonts.inter(color: GcmpColors.green,
-              fontSize: 10, fontWeight: FontWeight.w700, letterSpacing: 1.5)),
-        ]),
-        const SizedBox(height: 20),
-        Text(heading, style: GoogleFonts.inter(color: GcmpColors.textPrimary,
-            fontSize: 26, fontWeight: FontWeight.w800, letterSpacing: -0.8, height: 1.2)),
-        const SizedBox(height: 12),
-        Text(body, style: Theme.of(context).textTheme.bodyMedium),
-      ]),
+                  border: Border.all(color: GcmpColors.green.withValues(alpha: 0.2)),
+                ),
+                child: Icon(icon, color: GcmpColors.green, size: 18),
+              ),
+              const SizedBox(width: 12),
+              Text(label, style: GoogleFonts.inter(
+                  color: GcmpColors.green,
+                  fontSize: 10, fontWeight: FontWeight.w700, letterSpacing: 1.5)),
+            ]),
+            const SizedBox(height: 20),
+            Text(heading, style: GoogleFonts.inter(
+                color: GcmpColors.textPrimary,
+                fontSize: 26, fontWeight: FontWeight.w800, letterSpacing: -0.8, height: 1.2)),
+            const SizedBox(height: 12),
+            Text(body, style: Theme.of(context).textTheme.bodyMedium),
+          ]),
+        ),
+        if (highlight)
+          Positioned(
+            top: 0, left: 24, right: 24,
+            child: Container(
+              height: 1,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    Colors.transparent,
+                    GcmpColors.green.withValues(alpha: 0.4),
+                    Colors.transparent,
+                  ],
+                ),
+              ),
+            ),
+          ),
+      ],
     );
   }
 }
@@ -192,9 +270,14 @@ class _PartnerCtaState extends State<_PartnerCta> {
           duration: const Duration(milliseconds: 150),
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           decoration: BoxDecoration(
-            color: _hover ? GcmpColors.green.withValues(alpha: 0.15) : GcmpColors.green.withValues(alpha: 0.07),
+            color: _hover
+                ? GcmpColors.green.withValues(alpha: 0.15)
+                : GcmpColors.green.withValues(alpha: 0.07),
             borderRadius: BorderRadius.circular(8),
             border: Border.all(color: GcmpColors.green.withValues(alpha: 0.3)),
+            boxShadow: [
+              BoxShadow(color: GcmpColors.green.withValues(alpha: 0.08), blurRadius: 16),
+            ],
           ),
           child: Text('Become a Partner â†’',
               style: GoogleFonts.inter(color: GcmpColors.green,
