@@ -8,9 +8,7 @@ class VideoSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(
-          vertical: 80, horizontal: MediaQuery.sizeOf(context).width < GcmpColors.kMobile ? 24 : 64),
+    return SectionContainer(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
