@@ -12,7 +12,7 @@ class FooterSection extends StatelessWidget {
     final mobile = MediaQuery.sizeOf(context).width < GcmpColors.kMobile;
     return Container(
       decoration: BoxDecoration(
-        border: Border(top: BorderSide(color: Colors.white.withOpacity(0.05))),
+        border: Border(top: BorderSide(color: Colors.white.withValues(alpha: 0.05))),
       ),
       padding: EdgeInsets.symmetric(horizontal: mobile ? 24 : 64, vertical: 32),
       child: mobile ? _buildMobile(context) : _buildDesktop(context),
@@ -64,7 +64,7 @@ class FooterSection extends StatelessWidget {
     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(5),
-      border: Border.all(color: GcmpColors.green.withOpacity(0.25)),
+      border: Border.all(color: GcmpColors.green.withValues(alpha: 0.25)),
     ),
     child: Text(
       'SaaS Platform',
@@ -102,4 +102,5 @@ class _FooterLinkState extends State<_FooterLink> {
     ),
   );
 }
+
 

@@ -115,9 +115,10 @@ class _FaqItemState extends State<_FaqItem> {
           duration: const Duration(milliseconds: 200),
         ),
         if (!widget.isLast)
-          Container(height: 1, color: Colors.white.withOpacity(0.05)),
+          Container(height: 1, color: Colors.white.withValues(alpha: 0.05)),
       ],
     );
   }
 }
+
 

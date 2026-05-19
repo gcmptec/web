@@ -23,9 +23,9 @@ class HeroSection extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
             decoration: BoxDecoration(
-              color: GcmpColors.green.withOpacity(0.06),
+              color: GcmpColors.green.withValues(alpha: 0.06),
               borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: GcmpColors.green.withOpacity(0.2)),
+              border: Border.all(color: GcmpColors.green.withValues(alpha: 0.2)),
             ),
             child: Row(
               mainAxisSize: MainAxisSize.min,
@@ -145,7 +145,7 @@ class _PulseDotState extends State<_PulseDot> with SingleTickerProviderStateMixi
           width: 7, height: 7,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: GcmpColors.green.withOpacity(_anim.value),
+            color: GcmpColors.green.withValues(alpha: _anim.value),
           ),
         ),
       );
@@ -188,9 +188,9 @@ class _TimeBox extends StatelessWidget {
       width: mobile ? double.infinity : 220,
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.06),
+        color: color.withValues(alpha: 0.06),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: color.withOpacity(0.2)),
+        border: Border.all(color: color.withValues(alpha: 0.2)),
       ),
       child: Column(children: [
         Text(time, style: GoogleFonts.inter(color: color, fontSize: 38,
@@ -205,5 +205,6 @@ class _TimeBox extends StatelessWidget {
     );
   }
 }
+
 
 

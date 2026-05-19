@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gcmp_web/theme.dart';
 
-// ─── Section Label (e.g. "HOW IT WORKS") ─────────────────────────
+// â”€â”€â”€ Section Label (e.g. "HOW IT WORKS") â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 class SectionLabel extends StatelessWidget {
   final String text;
   const SectionLabel(this.text, {super.key});
@@ -19,7 +19,7 @@ class SectionLabel extends StatelessWidget {
   );
 }
 
-// ─── Green accent button ──────────────────────────────────────────
+// â”€â”€â”€ Green accent button â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 class GreenButton extends StatefulWidget {
   final String label;
   final VoidCallback onTap;
@@ -67,7 +67,7 @@ class _GreenButtonState extends State<GreenButton> {
   }
 }
 
-// ─── Ghost button ─────────────────────────────────────────────────
+// â”€â”€â”€ Ghost button â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 class GhostButton extends StatefulWidget {
   final String label;
   final VoidCallback onTap;
@@ -93,10 +93,10 @@ class _GhostButtonState extends State<GhostButton> {
           duration: const Duration(milliseconds: 150),
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 15),
           decoration: BoxDecoration(
-            color: _hover ? Colors.white.withOpacity(0.05) : Colors.transparent,
+            color: _hover ? Colors.white.withValues(alpha: 0.05) : Colors.transparent,
             borderRadius: BorderRadius.circular(9),
             border: Border.all(
-              color: Colors.white.withOpacity(_hover ? 0.25 : 0.12),
+              color: Colors.white.withValues(alpha: _hover ? 0.25 : 0.12),
             ),
           ),
           child: Text(
@@ -113,7 +113,7 @@ class _GhostButtonState extends State<GhostButton> {
   }
 }
 
-// ─── Green check circle ───────────────────────────────────────────
+// â”€â”€â”€ Green check circle â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 class GreenCheck extends StatelessWidget {
   const GreenCheck({super.key});
 
@@ -123,14 +123,14 @@ class GreenCheck extends StatelessWidget {
     height: 20,
     decoration: BoxDecoration(
       shape: BoxShape.circle,
-      color: GcmpColors.green.withOpacity(0.12),
-      border: Border.all(color: GcmpColors.green.withOpacity(0.3)),
+      color: GcmpColors.green.withValues(alpha: 0.12),
+      border: Border.all(color: GcmpColors.green.withValues(alpha: 0.3)),
     ),
     child: const Icon(Icons.check, color: GcmpColors.green, size: 12),
   );
 }
 
-// ─── Feature icon box ─────────────────────────────────────────────
+// â”€â”€â”€ Feature icon box â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 class FeatureIconBox extends StatelessWidget {
   final IconData icon;
   const FeatureIconBox(this.icon, {super.key});
@@ -140,26 +140,26 @@ class FeatureIconBox extends StatelessWidget {
     width: 44,
     height: 44,
     decoration: BoxDecoration(
-      color: GcmpColors.green.withOpacity(0.08),
+      color: GcmpColors.green.withValues(alpha: 0.08),
       borderRadius: BorderRadius.circular(10),
-      border: Border.all(color: GcmpColors.green.withOpacity(0.2)),
+      border: Border.all(color: GcmpColors.green.withValues(alpha: 0.2)),
     ),
     child: Icon(icon, color: GcmpColors.green, size: 20),
   );
 }
 
-// ─── Horizontal rule ─────────────────────────────────────────────
+// â”€â”€â”€ Horizontal rule â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 class GcmpDivider extends StatelessWidget {
   const GcmpDivider({super.key});
 
   @override
   Widget build(BuildContext context) => Container(
     height: 1,
-    color: Colors.white.withOpacity(0.05),
+    color: Colors.white.withValues(alpha: 0.05),
   );
 }
 
-// ─── Green tag / chip ─────────────────────────────────────────────
+// â”€â”€â”€ Green tag / chip â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 class GreenTag extends StatelessWidget {
   final String label;
   const GreenTag(this.label, {super.key});
@@ -168,9 +168,9 @@ class GreenTag extends StatelessWidget {
   Widget build(BuildContext context) => Container(
     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
     decoration: BoxDecoration(
-      color: GcmpColors.green.withOpacity(0.06),
+      color: GcmpColors.green.withValues(alpha: 0.06),
       borderRadius: BorderRadius.circular(5),
-      border: Border.all(color: GcmpColors.green.withOpacity(0.2)),
+      border: Border.all(color: GcmpColors.green.withValues(alpha: 0.2)),
     ),
     child: Text(
       label,
@@ -183,7 +183,7 @@ class GreenTag extends StatelessWidget {
   );
 }
 
-// ─── Status badge ─────────────────────────────────────────────────
+// â”€â”€â”€ Status badge â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 class StatusBadge extends StatelessWidget {
   final String label;
   final Color color;
@@ -193,9 +193,9 @@ class StatusBadge extends StatelessWidget {
   Widget build(BuildContext context) => Container(
     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
     decoration: BoxDecoration(
-      color: color.withOpacity(0.1),
+      color: color.withValues(alpha: 0.1),
       borderRadius: BorderRadius.circular(5),
-      border: Border.all(color: color.withOpacity(0.25)),
+      border: Border.all(color: color.withValues(alpha: 0.25)),
     ),
     child: Text(
       label,
@@ -209,7 +209,7 @@ class StatusBadge extends StatelessWidget {
   );
 }
 
-// ─── GCMP Logo widget ─────────────────────────────────────────────
+// â”€â”€â”€ GCMP Logo widget â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 class GcmpLogo extends StatelessWidget {
   final double size;
   const GcmpLogo({super.key, this.size = 32});
@@ -254,3 +254,4 @@ class GcmpLogo extends StatelessWidget {
     );
   }
 }
+

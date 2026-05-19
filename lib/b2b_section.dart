@@ -14,7 +14,7 @@ class B2bSection extends StatelessWidget {
       decoration: BoxDecoration(
         color: GcmpColors.surface,
         border: Border.symmetric(
-          horizontal: BorderSide(color: GcmpColors.green.withOpacity(0.08)),
+          horizontal: BorderSide(color: GcmpColors.green.withValues(alpha: 0.08)),
         ),
       ),
       padding: EdgeInsets.symmetric(vertical: 80, horizontal: mobile ? 24 : 64),
@@ -101,18 +101,18 @@ class _B2bCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(28),
       decoration: BoxDecoration(
-        color: highlight ? GcmpColors.green.withOpacity(0.05) : GcmpColors.card,
+        color: highlight ? GcmpColors.green.withValues(alpha: 0.05) : GcmpColors.card,
         borderRadius: BorderRadius.circular(14),
         border: Border.all(
-          color: highlight ? GcmpColors.green.withOpacity(0.3) : Colors.white.withOpacity(0.06),
+          color: highlight ? GcmpColors.green.withValues(alpha: 0.3) : Colors.white.withValues(alpha: 0.06),
         ),
       ),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Row(children: [
           Container(width: 40, height: 40,
-              decoration: BoxDecoration(color: GcmpColors.green.withOpacity(0.1),
+              decoration: BoxDecoration(color: GcmpColors.green.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(9),
-                  border: Border.all(color: GcmpColors.green.withOpacity(0.2))),
+                  border: Border.all(color: GcmpColors.green.withValues(alpha: 0.2))),
               child: Icon(icon, color: GcmpColors.green, size: 18)),
           const SizedBox(width: 12),
           Text(label, style: GoogleFonts.inter(color: GcmpColors.green,
@@ -139,7 +139,7 @@ class _B2bBottomRow extends StatelessWidget {
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.white.withOpacity(0.07)),
+        border: Border.all(color: Colors.white.withValues(alpha: 0.07)),
       ),
       child: mobile
           ? Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -191,9 +191,9 @@ class _PartnerCtaState extends State<_PartnerCta> {
           duration: const Duration(milliseconds: 150),
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           decoration: BoxDecoration(
-            color: _hover ? GcmpColors.green.withOpacity(0.15) : GcmpColors.green.withOpacity(0.07),
+            color: _hover ? GcmpColors.green.withValues(alpha: 0.15) : GcmpColors.green.withValues(alpha: 0.07),
             borderRadius: BorderRadius.circular(8),
-            border: Border.all(color: GcmpColors.green.withOpacity(0.3)),
+            border: Border.all(color: GcmpColors.green.withValues(alpha: 0.3)),
           ),
           child: Text('Become a Partner â†’',
               style: GoogleFonts.inter(color: GcmpColors.green,
@@ -203,4 +203,5 @@ class _PartnerCtaState extends State<_PartnerCta> {
     );
   }
 }
+
 

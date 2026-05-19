@@ -70,7 +70,7 @@ class _WhoCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: GcmpColors.card,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.white.withOpacity(0.06)),
+        border: Border.all(color: Colors.white.withValues(alpha: 0.06)),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -156,9 +156,9 @@ class _PilotSectionState extends State<PilotSection> {
     final mobile = MediaQuery.sizeOf(context).width < GcmpColors.kMobile;
     return Container(
       decoration: BoxDecoration(
-        color: GcmpColors.green.withOpacity(0.03),
+        color: GcmpColors.green.withValues(alpha: 0.03),
         border: Border.symmetric(
-          horizontal: BorderSide(color: GcmpColors.green.withOpacity(0.1)),
+          horizontal: BorderSide(color: GcmpColors.green.withValues(alpha: 0.1)),
         ),
       ),
       padding: EdgeInsets.symmetric(vertical: 80, horizontal: mobile ? 24 : 64),
@@ -195,9 +195,9 @@ class _PilotSectionState extends State<PilotSection> {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
             decoration: BoxDecoration(
-              color: GcmpColors.red.withOpacity(0.1),
+              color: GcmpColors.red.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: GcmpColors.red.withOpacity(0.3)),
+              border: Border.all(color: GcmpColors.red.withValues(alpha: 0.3)),
             ),
             child: Text('1 Spot Remaining',
                 style: GoogleFonts.inter(color: GcmpColors.red,
@@ -240,7 +240,7 @@ class _PilotSectionState extends State<PilotSection> {
             const SizedBox(width: 12),
             Expanded(child: Text(item,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: GcmpColors.textPrimary.withOpacity(0.85)))),
+                    color: GcmpColors.textPrimary.withValues(alpha: 0.85)))),
           ]),
         )),
       ],
@@ -253,7 +253,7 @@ class _PilotSectionState extends State<PilotSection> {
       decoration: BoxDecoration(
         color: GcmpColors.bg,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: GcmpColors.green.withOpacity(0.15)),
+        border: Border.all(color: GcmpColors.green.withValues(alpha: 0.15)),
       ),
       child: _submitted
           ? const _SuccessState()
@@ -294,16 +294,16 @@ class _FormBody extends StatelessWidget {
     hintText: hint,
     labelStyle: GoogleFonts.inter(color: GcmpColors.textMuted, fontSize: 11,
         fontWeight: FontWeight.w700, letterSpacing: 0.5),
-    hintStyle: GoogleFonts.inter(color: GcmpColors.textMuted.withOpacity(0.5), fontSize: 14),
+    hintStyle: GoogleFonts.inter(color: GcmpColors.textMuted.withValues(alpha: 0.5), fontSize: 14),
     filled: true,
-    fillColor: Colors.white.withOpacity(0.03),
+    fillColor: Colors.white.withValues(alpha: 0.03),
     contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
     border: OutlineInputBorder(borderRadius: BorderRadius.circular(8),
-        borderSide: BorderSide(color: Colors.white.withOpacity(0.09))),
+        borderSide: BorderSide(color: Colors.white.withValues(alpha: 0.09))),
     enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8),
-        borderSide: BorderSide(color: Colors.white.withOpacity(0.09))),
+        borderSide: BorderSide(color: Colors.white.withValues(alpha: 0.09))),
     focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8),
-        borderSide: BorderSide(color: GcmpColors.green.withOpacity(0.4))),
+        borderSide: BorderSide(color: GcmpColors.green.withValues(alpha: 0.4))),
   );
 
   @override
@@ -325,7 +325,7 @@ class _FormBody extends StatelessWidget {
       DropdownButtonFormField<String>(
         value: role.isEmpty ? null : role,
         hint: Text('Select your role...',
-            style: GoogleFonts.inter(color: GcmpColors.textMuted.withOpacity(0.5), fontSize: 14)),
+            style: GoogleFonts.inter(color: GcmpColors.textMuted.withValues(alpha: 0.5), fontSize: 14)),
         items: roles.map((r) => DropdownMenuItem(value: r,
             child: Text(r, style: GoogleFonts.inter(color: GcmpColors.textPrimary, fontSize: 14)))).toList(),
         onChanged: onRoleChanged,
@@ -358,9 +358,9 @@ class _FormBody extends StatelessWidget {
         Container(
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
-            color: GcmpColors.red.withOpacity(0.08),
+            color: GcmpColors.red.withValues(alpha: 0.08),
             borderRadius: BorderRadius.circular(8),
-            border: Border.all(color: GcmpColors.red.withOpacity(0.25)),
+            border: Border.all(color: GcmpColors.red.withValues(alpha: 0.25)),
           ),
           child: Row(children: [
             const Icon(Icons.error_outline, color: GcmpColors.red, size: 16),
@@ -382,7 +382,7 @@ class _FormBody extends StatelessWidget {
       Center(child: Text(
         'Your details stay private. We will never share or spam you.',
         textAlign: TextAlign.center,
-        style: GoogleFonts.inter(color: GcmpColors.textMuted.withOpacity(0.6), fontSize: 11),
+        style: GoogleFonts.inter(color: GcmpColors.textMuted.withValues(alpha: 0.6), fontSize: 11),
       )),
     ]);
   }
@@ -399,8 +399,8 @@ class _SuccessState extends StatelessWidget {
         width: 60, height: 60,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: GcmpColors.green.withOpacity(0.12),
-          border: Border.all(color: GcmpColors.green.withOpacity(0.3)),
+          color: GcmpColors.green.withValues(alpha: 0.12),
+          border: Border.all(color: GcmpColors.green.withValues(alpha: 0.3)),
         ),
         child: const Icon(Icons.check, color: GcmpColors.green, size: 28),
       ),
@@ -416,5 +416,6 @@ class _SuccessState extends StatelessWidget {
     ]);
   }
 }
+
 
 

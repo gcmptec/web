@@ -34,17 +34,17 @@ class NavBar extends StatelessWidget {
       height: 66,
       decoration: BoxDecoration(
         color: scrolled
-            ? GcmpColors.bg.withOpacity(0.98)
-            : GcmpColors.bg.withOpacity(0.95),
+            ? GcmpColors.bg.withValues(alpha: 0.98)
+            : GcmpColors.bg.withValues(alpha: 0.95),
         border: Border(
           bottom: BorderSide(
             color: scrolled
-                ? GcmpColors.green.withOpacity(0.15)
-                : GcmpColors.green.withOpacity(0.08),
+                ? GcmpColors.green.withValues(alpha: 0.15)
+                : GcmpColors.green.withValues(alpha: 0.08),
           ),
         ),
         boxShadow: scrolled
-            ? [BoxShadow(color: Colors.black.withOpacity(0.3), blurRadius: 16)]
+            ? [BoxShadow(color: Colors.black.withValues(alpha: 0.3), blurRadius: 16)]
             : [],
       ),
       padding: EdgeInsets.symmetric(horizontal: mobile ? 24 : 64),
@@ -123,10 +123,10 @@ class _PilotNavBtnState extends State<_PilotNavBtn> {
             padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 9),
             decoration: BoxDecoration(
               color: _hover
-                  ? GcmpColors.green.withOpacity(0.18)
-                  : GcmpColors.green.withOpacity(0.08),
+                  ? GcmpColors.green.withValues(alpha: 0.18)
+                  : GcmpColors.green.withValues(alpha: 0.08),
               borderRadius: BorderRadius.circular(7),
-              border: Border.all(color: GcmpColors.green.withOpacity(0.35)),
+              border: Border.all(color: GcmpColors.green.withValues(alpha: 0.35)),
             ),
             child: Text(
               'Free 60-Day Pilot â†’',
@@ -140,4 +140,5 @@ class _PilotNavBtnState extends State<_PilotNavBtn> {
         ),
       );
 }
+
 

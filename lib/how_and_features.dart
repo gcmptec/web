@@ -32,7 +32,7 @@ class HowItWorksSection extends StatelessWidget {
             borderRadius: BorderRadius.circular(14),
             child: Container(
               decoration: BoxDecoration(
-                border: Border.all(color: Colors.white.withOpacity(0.06)),
+                border: Border.all(color: Colors.white.withValues(alpha: 0.06)),
                 borderRadius: BorderRadius.circular(14),
               ),
               child: mobile
@@ -83,8 +83,8 @@ class _StepCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final border = isLast ? null : (mobile
-        ? Border(bottom: BorderSide(color: Colors.white.withOpacity(0.05)))
-        : Border(right: BorderSide(color: Colors.white.withOpacity(0.05))));
+        ? Border(bottom: BorderSide(color: Colors.white.withValues(alpha: 0.05)))
+        : Border(right: BorderSide(color: Colors.white.withValues(alpha: 0.05))));
     final inner = Container(
       padding: const EdgeInsets.all(32),
       decoration: BoxDecoration(color: GcmpColors.card, border: border),
@@ -93,9 +93,9 @@ class _StepCard extends StatelessWidget {
             fontSize: 11, fontWeight: FontWeight.w700, letterSpacing: 2.0)),
         const SizedBox(height: 18),
         Container(width: 46, height: 46,
-            decoration: BoxDecoration(color: GcmpColors.green.withOpacity(0.08),
+            decoration: BoxDecoration(color: GcmpColors.green.withValues(alpha: 0.08),
                 borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: GcmpColors.green.withOpacity(0.2))),
+                border: Border.all(color: GcmpColors.green.withValues(alpha: 0.2))),
             child: Icon(icon, color: GcmpColors.green, size: 22)),
         const SizedBox(height: 18),
         Text(title, style: Theme.of(context).textTheme.headlineMedium),
@@ -181,7 +181,7 @@ class _FeatureCardState extends State<_FeatureCard> {
           color: GcmpColors.card,
           borderRadius: BorderRadius.circular(14),
           border: Border.all(
-              color: _hover ? GcmpColors.green.withOpacity(0.25) : Colors.white.withOpacity(0.06)),
+              color: _hover ? GcmpColors.green.withValues(alpha: 0.25) : Colors.white.withValues(alpha: 0.06)),
         ),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Row(children: [
@@ -200,4 +200,5 @@ class _FeatureCardState extends State<_FeatureCard> {
     );
   }
 }
+
 
