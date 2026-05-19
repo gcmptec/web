@@ -39,14 +39,24 @@ class FaqSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SectionLabel('FAQ'),
-          const SizedBox(height: 12),
-          Text('Common questions', style: Theme.of(context).textTheme.displayMedium),
+          RevealWrapper(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SectionLabel('FAQ'),
+                const SizedBox(height: 12),
+                Text('Common questions', style: Theme.of(context).textTheme.displayMedium),
+              ],
+            ),
+          ),
           const SizedBox(height: 48),
-          ...List.generate(_faqs.length, (i) => _FaqItem(
-            question: _faqs[i].$1,
-            answer: _faqs[i].$2,
-            isLast: i == _faqs.length - 1,
+          ...List.generate(_faqs.length, (i) => RevealWrapper(
+            delay: Duration(milliseconds: 60 * i + 100),
+            child: _FaqItem(
+              question: _faqs[i].$1,
+              answer: _faqs[i].$2,
+              isLast: i == _faqs.length - 1,
+            ),
           )),
         ],
       ),
@@ -113,7 +123,18 @@ class _FaqItemState extends State<_FaqItem> {
           duration: const Duration(milliseconds: 200),
         ),
         if (!widget.isLast)
-          Container(height: 1, color: Colors.white.withValues(alpha: 0.05)),
+          Container(
+            height: 1,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Colors.transparent,
+                  Colors.white.withValues(alpha: 0.06),
+                  Colors.transparent,
+                ],
+              ),
+            ),
+          ),
       ],
     );
   }
