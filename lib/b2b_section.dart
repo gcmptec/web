@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gcmp_web/shared.dart';
 import 'package:gcmp_web/theme.dart';
@@ -226,7 +226,7 @@ class _B2bBottomRow extends StatelessWidget {
                 const Icon(Icons.check_circle_outline, color: GcmpColors.green, size: 18),
                 const SizedBox(width: 12),
                 Expanded(child: Text(
-                  'White-label ready Â· API-first architecture Â· Dedicated partner support Â· Botswana-hosted infrastructure',
+                  'White-label ready · API-first architecture · Dedicated partner support · Botswana-hosted infrastructure',
                   style: GoogleFonts.inter(color: GcmpColors.textSecondary, fontSize: 13, height: 1.5),
                 )),
               ]),
@@ -237,7 +237,7 @@ class _B2bBottomRow extends StatelessWidget {
               const Icon(Icons.check_circle_outline, color: GcmpColors.green, size: 18),
               const SizedBox(width: 12),
               Expanded(child: Text(
-                'White-label ready Â· API-first architecture Â· Dedicated partner support Â· Botswana-hosted infrastructure',
+                'White-label ready · API-first architecture · Dedicated partner support · Botswana-hosted infrastructure',
                 style: GoogleFonts.inter(color: GcmpColors.textSecondary, fontSize: 13, height: 1.5),
               )),
               const SizedBox(width: 24),
@@ -279,7 +279,7 @@ class _PartnerCtaState extends State<_PartnerCta> {
               BoxShadow(color: GcmpColors.green.withValues(alpha: 0.08), blurRadius: 16),
             ],
           ),
-          child: Text('Become a Partner â†’',
+          child: Text('Become a Partner →',
               style: GoogleFonts.inter(color: GcmpColors.green,
                   fontSize: 13, fontWeight: FontWeight.w700)),
         ),

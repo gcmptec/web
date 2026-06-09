@@ -23,7 +23,6 @@ class GcmpTheme {
     scaffoldBackgroundColor: GcmpColors.bg,
     colorScheme: const ColorScheme.dark(
       primary: GcmpColors.green,
-      background: GcmpColors.bg,
       surface: GcmpColors.surface,
     ),
     textTheme: GoogleFonts.interTextTheme(

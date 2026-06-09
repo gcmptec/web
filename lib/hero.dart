@@ -171,6 +171,7 @@ class _HeroSectionState extends State<HeroSection> {
         textAlign: TextAlign.center,
         text: TextSpan(
           style: GoogleFonts.inter(
+            color: GcmpColors.textPrimary,
             fontSize: mobile ? 44 : 80,
             fontWeight: FontWeight.w900,
             letterSpacing: -3,
@@ -179,7 +180,7 @@ class _HeroSectionState extends State<HeroSection> {
           children: [
             const TextSpan(text: 'From '),
             const TextSpan(text: 'Hours ', style: TextStyle(color: GcmpColors.red)),
-            const TextSpan(text: 'To ', style: TextStyle(color: GcmpColors.textPrimary)),
+            const TextSpan(text: 'To '),
             TextSpan(
               text: 'Seconds',
               style: TextStyle(

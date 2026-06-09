@@ -1,9 +1,9 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gcmp_web/shared.dart';
 import 'package:gcmp_web/theme.dart';
 
-// â”€â”€â”€ How It Works â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── How It Works ─────────────────────────────────────────────────
 class HowItWorksSection extends StatelessWidget {
   const HowItWorksSection({super.key});
 
@@ -124,7 +124,7 @@ class _StepCard extends StatelessWidget {
               Text(
                 'STEP $number',
                 style: GoogleFonts.inter(
-                  color: GcmpColors.green.withValues(alpha: isActive ? 1.0 : 0.4),
+                  color: GcmpColors.green.withValues(alpha: isActive ? 1.0 : 0.7),
                   fontSize: 11,
                   fontWeight: FontWeight.w700,
                   letterSpacing: 2.0,
@@ -134,10 +134,10 @@ class _StepCard extends StatelessWidget {
               Container(
                 width: 46, height: 46,
                 decoration: BoxDecoration(
-                  color: GcmpColors.green.withValues(alpha: isActive ? 0.10 : 0.04),
+                  color: GcmpColors.green.withValues(alpha: isActive ? 0.10 : 0.06),
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(
-                    color: GcmpColors.green.withValues(alpha: isActive ? 0.25 : 0.1),
+                    color: GcmpColors.green.withValues(alpha: isActive ? 0.25 : 0.15),
                   ),
                   boxShadow: isActive
                       ? [BoxShadow(color: GcmpColors.green.withValues(alpha: 0.10), blurRadius: 12)]
@@ -145,7 +145,7 @@ class _StepCard extends StatelessWidget {
                 ),
                 child: Icon(
                   icon,
-                  color: GcmpColors.green.withValues(alpha: isActive ? 1.0 : 0.4),
+                  color: GcmpColors.green.withValues(alpha: isActive ? 1.0 : 0.75),
                   size: 22,
                 ),
               ),
@@ -153,13 +153,13 @@ class _StepCard extends StatelessWidget {
               Text(
                 title,
                 style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                    color: GcmpColors.textPrimary.withValues(alpha: isActive ? 1.0 : 0.7)),
+                    color: GcmpColors.textPrimary.withValues(alpha: isActive ? 1.0 : 0.92)),
               ),
               const SizedBox(height: 10),
               Text(
                 body,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: GcmpColors.textSecondary.withValues(alpha: isActive ? 1.0 : 0.5)),
+                    color: GcmpColors.textSecondary.withValues(alpha: isActive ? 1.0 : 0.85)),
               ),
             ],
           ),
@@ -183,7 +183,7 @@ class _StepCard extends StatelessWidget {
   }
 }
 
-// â”€â”€â”€ Features Section â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Features Section ─────────────────────────────────────────────
 class FeaturesSection extends StatelessWidget {
   const FeaturesSection({super.key});
 

@@ -12,6 +12,8 @@ Widget buildWebVideo(String src, {required double aspectRatio}) {
     ui_web.platformViewRegistry.registerViewFactory(viewId, (int id) {
       return html.VideoElement()
         ..src = src
+        ..poster = 'demo_poster.png'
+        ..preload = 'metadata'
         ..controls = true
         ..style.width = '100%'
         ..style.height = '100%'

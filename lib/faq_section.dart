@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gcmp_web/shared.dart';
 import 'package:gcmp_web/theme.dart';
@@ -6,7 +6,7 @@ import 'package:gcmp_web/theme.dart';
 const _faqs = [
   (
     'How does the panic button work?',
-    'Staff trigger an alert via the GCMP mobile app or a physical device. The system instantly notifies your designated first responders with the exact location and a live contextual snapshot â€” so they know what they\'re walking into before they arrive.',
+    'Staff trigger an alert via the GCMP mobile app or a physical device. The system instantly notifies your designated first responders with the exact location and a live contextual snapshot — so they know what they\'re walking into before they arrive.',
   ),
   (
     'Does it work without internet?',
@@ -26,7 +26,7 @@ const _faqs = [
   ),
   (
     'What happens after the 60-day pilot?',
-    'You decide with full incident data in hand. No automatic charges, no lock-in. If the platform is working for your team we move to a monthly plan. If not, we part ways â€” no strings attached.',
+    'You decide with full incident data in hand. No automatic charges, no lock-in. If the platform is working for your team we move to a monthly plan. If not, we part ways — no strings attached.',
   ),
 ];
 

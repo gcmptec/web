@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gcmp_web/shared.dart';
 import 'package:gcmp_web/theme.dart';
@@ -45,7 +45,7 @@ class NavBar extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: mobile ? 24 : 64),
           child: Row(
             children: [
-              Image.asset('assets/logo_200x200.png', height: 40),
+              const GcmpLogo(size: 30),
               const Spacer(),
               if (!mobile) ...[
                 _NavLink('How It Works', () => ScrollHelper.to(howKey)),
@@ -132,7 +132,7 @@ class _PilotNavBtnState extends State<_PilotNavBtn> {
               ],
             ),
             child: Text(
-              'Free 60-Day Pilot â†’',
+              'Free 60-Day Pilot →',
               style: GoogleFonts.inter(
                 color: GcmpColors.green,
                 fontSize: 13,

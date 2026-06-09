@@ -1,4 +1,4 @@
-﻿import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -6,17 +6,17 @@ import 'package:gcmp_web/shared.dart';
 import 'package:gcmp_web/theme.dart';
 
 
-// â”€â”€â”€ Who It's For â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Who It's For ─────────────────────────────────────────────────
 class WhoSection extends StatelessWidget {
   const WhoSection({super.key});
 
   static const _items = [
-    ('ðŸ¢', 'Office Parks & Estates', 'Multi-tenant environments where security coverage is shared and response coordination matters.'),
-    ('ðŸ«', 'Schools & Universities', 'Protecting staff and students with rapid, informed response when every second counts.'),
-    ('ðŸ­', 'Warehouses & Facilities', 'Large premises with distributed staff who need a reliable way to call for help fast.'),
-    ('ðŸª', 'Retail & SMEs', 'Small teams with no dedicated security officer â€” the panic button is your first line of defence.'),
-    ('ðŸ¨', 'Hotels & Hospitality', 'Guest and staff safety managed from a single dashboard with full incident visibility.'),
-    ('ðŸ—ï¸', 'Construction & Sites', 'Remote or high-risk worksites where lone workers need a direct line to help.'),
+    (Icons.apartment, 'Office Parks & Estates', 'Multi-tenant environments where security coverage is shared and response coordination matters.'),
+    (Icons.school_outlined, 'Schools & Universities', 'Protecting staff and students with rapid, informed response when every second counts.'),
+    (Icons.warehouse_outlined, 'Warehouses & Facilities', 'Large premises with distributed staff who need a reliable way to call for help fast.'),
+    (Icons.storefront_outlined, 'Retail & SMEs', 'Small teams with no dedicated security officer — the panic button is your first line of defence.'),
+    (Icons.hotel_outlined, 'Hotels & Hospitality', 'Guest and staff safety managed from a single dashboard with full incident visibility.'),
+    (Icons.construction_outlined, 'Construction & Sites', 'Remote or high-risk worksites where lone workers need a direct line to help.'),
   ];
 
   @override
@@ -48,22 +48,38 @@ class WhoSection extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 44),
-          GridView.count(
-            crossAxisCount: crossAxis,
-            crossAxisSpacing: 14,
-            mainAxisSpacing: 14,
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            childAspectRatio: mobile ? 3.0 : 2.3,
-            children: List.generate(_items.length, (i) => RevealWrapper(
-              delay: Duration(milliseconds: 80 * i + 100),
-              child: _WhoCard(
-                emoji: _items[i].$1,
-                title: _items[i].$2,
-                body: _items[i].$3,
-              ),
-            )),
-          ),
+          // Mobile: plain column so cards size to their copy (no truncation).
+          if (mobile)
+            Column(
+              children: List.generate(_items.length, (i) => Padding(
+                padding: const EdgeInsets.only(bottom: 14),
+                child: RevealWrapper(
+                  delay: Duration(milliseconds: 80 * i + 100),
+                  child: _WhoCard(
+                    icon: _items[i].$1,
+                    title: _items[i].$2,
+                    body: _items[i].$3,
+                  ),
+                ),
+              )),
+            )
+          else
+            GridView.count(
+              crossAxisCount: crossAxis,
+              crossAxisSpacing: 14,
+              mainAxisSpacing: 14,
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              childAspectRatio: crossAxis == 2 ? 2.6 : 2.3,
+              children: List.generate(_items.length, (i) => RevealWrapper(
+                delay: Duration(milliseconds: 80 * i + 100),
+                child: _WhoCard(
+                  icon: _items[i].$1,
+                  title: _items[i].$2,
+                  body: _items[i].$3,
+                ),
+              )),
+            ),
         ],
       ),
     );
@@ -71,8 +87,9 @@ class WhoSection extends StatelessWidget {
 }
 
 class _WhoCard extends StatelessWidget {
-  final String emoji, title, body;
-  const _WhoCard({required this.emoji, required this.title, required this.body});
+  final IconData icon;
+  final String title, body;
+  const _WhoCard({required this.icon, required this.title, required this.body});
 
   @override
   Widget build(BuildContext context) {
@@ -94,9 +111,10 @@ class _WhoCard extends StatelessWidget {
             height: 38,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: GcmpColors.green.withValues(alpha: 0.06),
+              color: GcmpColors.green.withValues(alpha: 0.10),
+              border: Border.all(color: GcmpColors.green.withValues(alpha: 0.18)),
             ),
-            child: Center(child: Text(emoji, style: const TextStyle(fontSize: 20))),
+            child: Icon(icon, size: 19, color: GcmpColors.green),
           ),
           const SizedBox(width: 14),
           Expanded(
@@ -109,7 +127,7 @@ class _WhoCard extends StatelessWidget {
                 const SizedBox(height: 4),
                 Text(body,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 12),
-                    maxLines: 2, overflow: TextOverflow.ellipsis),
+                    maxLines: 3, overflow: TextOverflow.ellipsis),
               ],
             ),
           ),
@@ -119,7 +137,7 @@ class _WhoCard extends StatelessWidget {
   }
 }
 
-// â”€â”€â”€ Pilot Signup Section â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Pilot Signup Section ─────────────────────────────────────────
 class PilotSection extends StatefulWidget {
   const PilotSection({super.key});
 
@@ -136,19 +154,40 @@ class _PilotSectionState extends State<PilotSection> {
   bool _submitted = false;
   bool _loading = false;
   bool _error = false;
+  String? _validationMsg;
 
   final _roles = [
     'Operations Manager', 'Security Manager', 'HR Manager',
     'Facilities Manager', 'Business Owner / Director', 'Other',
   ];
 
-  Future<void> _submitForm() async {
-    if (_nameCtrl.text.trim().isEmpty ||
-        _companyCtrl.text.trim().isEmpty ||
-        _role.isEmpty ||
-        _phoneCtrl.text.trim().isEmpty) return;
+  String? _validate() {
+    if (_nameCtrl.text.trim().isEmpty) return 'Please enter your full name.';
+    if (_companyCtrl.text.trim().isEmpty) return 'Please enter your company or organisation.';
+    if (_role.isEmpty) return 'Please select your role.';
+    final phone = _phoneCtrl.text.trim();
+    if (phone.isEmpty) return 'Please enter a phone or WhatsApp number.';
+    final digits = phone.replaceAll(RegExp(r'\D'), '');
+    if (digits.length < 7 || digits.length > 15 ||
+        !RegExp(r'^\+?[\d\s\-()]+$').hasMatch(phone)) {
+      return 'That phone number doesn\'t look right — please check it.';
+    }
+    final email = _emailCtrl.text.trim();
+    if (email.isNotEmpty &&
+        !RegExp(r'^[\w.+-]+@[\w-]+(\.[\w-]+)+$').hasMatch(email)) {
+      return 'That email address doesn\'t look right — please check it.';
+    }
+    return null;
+  }
 
-    setState(() { _loading = true; _error = false; });
+  Future<void> _submitForm() async {
+    final msg = _validate();
+    if (msg != null) {
+      setState(() => _validationMsg = msg);
+      return;
+    }
+
+    setState(() { _loading = true; _error = false; _validationMsg = null; });
     try {
       await FirebaseFirestore.instance.collection('pilot_applications').add({
         'name': _nameCtrl.text.trim(),
@@ -202,7 +241,7 @@ class _PilotSectionState extends State<PilotSection> {
     children: [
       Expanded(
         child: RevealWrapper(
-          child: _LeftCopy(context),
+          child: _leftCopy(context),
         ),
       ),
       const SizedBox(width: 64),
@@ -210,7 +249,7 @@ class _PilotSectionState extends State<PilotSection> {
         width: 400,
         child: RevealWrapper(
           delay: const Duration(milliseconds: 150),
-          child: _FormCard(),
+          child: _formCard(),
         ),
       ),
     ],
@@ -219,16 +258,16 @@ class _PilotSectionState extends State<PilotSection> {
   Widget _buildMobile(BuildContext context) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      RevealWrapper(child: _LeftCopy(context)),
+      RevealWrapper(child: _leftCopy(context)),
       const SizedBox(height: 40),
       RevealWrapper(
         delay: const Duration(milliseconds: 150),
-        child: _FormCard(),
+        child: _formCard(),
       ),
     ],
   );
 
-  Widget _LeftCopy(BuildContext context) {
+  Widget _leftCopy(BuildContext context) {
     final mobile = MediaQuery.sizeOf(context).width < GcmpColors.kMobile;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -272,11 +311,11 @@ class _PilotSectionState extends State<PilotSection> {
         ),
         const SizedBox(height: 36),
         ...[
-          'Full platform access â€” panic button + dashboard â€” at no cost',
+          'Full platform access — panic button + dashboard — at no cost',
           'Hands-on onboarding and setup support from the founder',
           '60 days of real deployment data and incident reporting',
           'Direct input into the product roadmap',
-          'No lock-in â€” decide at the end of 60 days',
+          'No lock-in — decide at the end of 60 days',
         ].map((item) => Padding(
           padding: const EdgeInsets.only(bottom: 14),
           child: Row(children: [
@@ -291,7 +330,7 @@ class _PilotSectionState extends State<PilotSection> {
     );
   }
 
-  Widget _FormCard() {
+  Widget _formCard() {
     return Stack(
       clipBehavior: Clip.none,
       children: [
@@ -317,6 +356,7 @@ class _PilotSectionState extends State<PilotSection> {
                   roles: _roles,
                   loading: _loading,
                   error: _error,
+                  validationMsg: _validationMsg,
                   onRoleChanged: (v) => setState(() => _role = v ?? ''),
                   onSubmit: _submitForm,
                 ),
@@ -346,6 +386,7 @@ class _FormBody extends StatelessWidget {
   final String role;
   final List<String> roles;
   final bool loading, error;
+  final String? validationMsg;
   final ValueChanged<String?> onRoleChanged;
   final VoidCallback onSubmit;
 
@@ -354,6 +395,7 @@ class _FormBody extends StatelessWidget {
     required this.phoneCtrl, required this.emailCtrl,
     required this.role, required this.roles,
     required this.loading, required this.error,
+    required this.validationMsg,
     required this.onRoleChanged, required this.onSubmit,
   });
 
@@ -383,15 +425,17 @@ class _FormBody extends StatelessWidget {
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 13)),
       const SizedBox(height: 24),
       TextField(controller: nameCtrl,
+          maxLength: 80,
           style: const TextStyle(color: GcmpColors.textPrimary, fontSize: 14),
-          decoration: _dec('FULL NAME', 'Your name')),
+          decoration: _dec('FULL NAME', 'Your name').copyWith(counterText: '')),
       const SizedBox(height: 14),
       TextField(controller: companyCtrl,
+          maxLength: 120,
           style: const TextStyle(color: GcmpColors.textPrimary, fontSize: 14),
-          decoration: _dec('COMPANY / ORGANISATION', 'Company name')),
+          decoration: _dec('COMPANY / ORGANISATION', 'Company name').copyWith(counterText: '')),
       const SizedBox(height: 14),
       DropdownButtonFormField<String>(
-        value: role.isEmpty ? null : role,
+        initialValue: role.isEmpty ? null : role,
         hint: Text('Select your role...',
             style: GoogleFonts.inter(color: GcmpColors.textMuted.withValues(alpha: 0.5), fontSize: 14)),
         items: roles.map((r) => DropdownMenuItem(value: r,
@@ -403,12 +447,16 @@ class _FormBody extends StatelessWidget {
       ),
       const SizedBox(height: 14),
       TextField(controller: phoneCtrl,
+          maxLength: 20,
+          keyboardType: TextInputType.phone,
           style: const TextStyle(color: GcmpColors.textPrimary, fontSize: 14),
-          decoration: _dec('PHONE / WHATSAPP', '+267 XX XXX XXX')),
+          decoration: _dec('PHONE / WHATSAPP', '+267 XX XXX XXX').copyWith(counterText: '')),
       const SizedBox(height: 14),
       TextField(controller: emailCtrl,
+          maxLength: 120,
+          keyboardType: TextInputType.emailAddress,
           style: const TextStyle(color: GcmpColors.textPrimary, fontSize: 14),
-          decoration: _dec('WORK EMAIL', 'you@company.co.bw')),
+          decoration: _dec('WORK EMAIL', 'you@company.co.bw').copyWith(counterText: '')),
       const SizedBox(height: 20),
       SizedBox(
         width: double.infinity,
@@ -419,9 +467,9 @@ class _FormBody extends StatelessWidget {
                 child: const Center(child: SizedBox(width: 20, height: 20,
                     child: CircularProgressIndicator(strokeWidth: 2.5,
                         color: Color(0xFF0A0A18)))))
-            : GreenButton(label: 'Apply for Free Pilot â†’', onTap: onSubmit, large: true),
+            : GreenButton(label: 'Apply for Free Pilot →', onTap: onSubmit, large: true),
       ),
-      if (error) ...[
+      if (validationMsg != null || error) ...[
         const SizedBox(height: 12),
         Container(
           padding: const EdgeInsets.all(12),
@@ -434,7 +482,8 @@ class _FormBody extends StatelessWidget {
             const Icon(Icons.error_outline, color: GcmpColors.red, size: 16),
             const SizedBox(width: 8),
             Expanded(child: Text(
-              'Something went wrong. Please try again or email us directly.',
+              validationMsg ??
+                  'Something went wrong. Please try again or email us directly.',
               style: GoogleFonts.inter(color: GcmpColors.red, fontSize: 12),
             )),
           ]),

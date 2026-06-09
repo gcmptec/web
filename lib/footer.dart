@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:gcmp_web/shared.dart';
@@ -48,7 +48,7 @@ class FooterSection extends StatelessWidget {
       const GcmpLogo(size: 28),
       const SizedBox(width: 16),
       Text(
-        'Â© 2026 GCMP Security (Pty) Ltd Â· Gaborone, Botswana',
+        '© 2026 GCMP Security (Pty) Ltd · Gaborone, Botswana',
         style: GoogleFonts.inter(color: GcmpColors.textMuted, fontSize: 13),
       ),
       const Spacer(),
@@ -77,7 +77,7 @@ class FooterSection extends StatelessWidget {
       ),
       const SizedBox(height: 14),
       Text(
-        'Â© 2026 GCMP Security (Pty) Ltd Â· Gaborone, Botswana',
+        '© 2026 GCMP Security (Pty) Ltd · Gaborone, Botswana',
         textAlign: TextAlign.center,
         style: GoogleFonts.inter(color: GcmpColors.textMuted, fontSize: 12),
       ),

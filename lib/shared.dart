@@ -1,9 +1,9 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gcmp_web/theme.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
-// â”€â”€â”€ Section Label (e.g. "HOW IT WORKS") â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Section Label (e.g. "HOW IT WORKS") ─────────────────────────
 class SectionLabel extends StatelessWidget {
   final String text;
   const SectionLabel(this.text, {super.key});
@@ -20,7 +20,7 @@ class SectionLabel extends StatelessWidget {
   );
 }
 
-// â”€â”€â”€ Green accent button â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Green accent button ──────────────────────────────────────────
 class GreenButton extends StatefulWidget {
   final String label;
   final VoidCallback onTap;
@@ -74,7 +74,7 @@ class _GreenButtonState extends State<GreenButton> {
   }
 }
 
-// â”€â”€â”€ Ghost button â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Ghost button ─────────────────────────────────────────────────
 class GhostButton extends StatefulWidget {
   final String label;
   final VoidCallback onTap;
@@ -120,7 +120,7 @@ class _GhostButtonState extends State<GhostButton> {
   }
 }
 
-// â”€â”€â”€ Green check circle â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Green check circle ───────────────────────────────────────────
 class GreenCheck extends StatelessWidget {
   const GreenCheck({super.key});
 
@@ -137,7 +137,7 @@ class GreenCheck extends StatelessWidget {
   );
 }
 
-// â”€â”€â”€ Feature icon box â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Feature icon box ─────────────────────────────────────────────
 class FeatureIconBox extends StatelessWidget {
   final IconData icon;
   const FeatureIconBox(this.icon, {super.key});
@@ -161,7 +161,7 @@ class FeatureIconBox extends StatelessWidget {
   );
 }
 
-// â”€â”€â”€ Horizontal rule â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Horizontal rule ─────────────────────────────────────────────
 class GcmpDivider extends StatelessWidget {
   const GcmpDivider({super.key});
 
@@ -195,7 +195,7 @@ class GcmpDivider extends StatelessWidget {
   );
 }
 
-// â”€â”€â”€ Green tag / chip â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Green tag / chip ─────────────────────────────────────────────
 class GreenTag extends StatelessWidget {
   final String label;
   const GreenTag(this.label, {super.key});
@@ -219,7 +219,7 @@ class GreenTag extends StatelessWidget {
   );
 }
 
-// â”€â”€â”€ Status badge â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Status badge ─────────────────────────────────────────────────
 class StatusBadge extends StatelessWidget {
   final String label;
   final Color color;
@@ -245,7 +245,7 @@ class StatusBadge extends StatelessWidget {
   );
 }
 
-// â”€â”€â”€ GCMP Logo widget â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── GCMP Logo widget ─────────────────────────────────────────────
 class GcmpLogo extends StatelessWidget {
   final double size;
   const GcmpLogo({super.key, this.size = 32});
