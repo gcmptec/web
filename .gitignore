@@ -53,3 +53,7 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# new site
+site/node_modules/
+site/dist/
