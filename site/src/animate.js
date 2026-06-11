@@ -90,11 +90,18 @@ export function initAnimations() {
   // Three.js eval stays completely out of the FCP→TTI measurement window.
   // Real users: the scene loads on their first scroll gesture — the canvas
   // is behind the preloader for 500-2500 ms anyway.
+  // Fallback: if no interaction occurs within 3.5 s, boot anyway so passive
+  // visitors still see the hero 3D scene.
   let sceneStarted = false;
+  let fallbackTimer = null;
 
   function startScene() {
     if (sceneStarted) return;
     sceneStarted = true;
+    if (fallbackTimer !== null) {
+      clearTimeout(fallbackTimer);
+      fallbackTimer = null;
+    }
     bootScene().then(() => ScrollTrigger.refresh()).catch(() => showPoster());
   }
 
@@ -102,6 +109,9 @@ export function initAnimations() {
   interactionEvents.forEach((ev) => {
     window.addEventListener(ev, startScene, { once: true, passive: true, capture: true });
   });
+
+  // Timer fallback — fires if the visitor never interacts.
+  fallbackTimer = setTimeout(startScene, 3500);
 
   async function bootScene() {
     // Remove interaction listeners (already fired, but clean up the rest)
