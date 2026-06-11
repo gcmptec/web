@@ -25,26 +25,41 @@ export function initScene(canvas, tier, onFatalLoss) {
   const updatables = [];
   let running = true;
   document.addEventListener('visibilitychange', () => {
-    running = !document.hidden;
+    if (document.hidden) {
+      running = false;
+      clock.stop();
+    } else {
+      clock.start();
+      running = true;
+    }
   });
 
   const clock = new THREE.Clock();
-  renderer.setAnimationLoop(() => {
+  const loopFn = () => {
     if (!running) return;
     const t = clock.getElapsedTime();
     for (const fn of updatables) fn(t);
     renderer.render(scene, camera);
-  });
+  };
+  renderer.setAnimationLoop(loopFn);
 
   // Context loss: allow one automatic restore; if it doesn't come back, bail to poster.
   let lossTimer = null;
+  let fatalFired = false;
   canvas.addEventListener('webglcontextlost', (e) => {
     e.preventDefault();
-    lossTimer = setTimeout(() => onFatalLoss && onFatalLoss(), 3000);
+    running = false;
+    clock.stop();
+    lossTimer = setTimeout(() => {
+      if (!fatalFired) { fatalFired = true; if (onFatalLoss) onFatalLoss(); }
+    }, 3000);
   });
   canvas.addEventListener('webglcontextrestored', () => {
     clearTimeout(lossTimer);
+    clock.start();
+    running = true;
     setSize();
+    renderer.setAnimationLoop(loopFn);
   });
 
   return {

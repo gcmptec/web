@@ -19,7 +19,7 @@ function showPoster() {
 }
 
 if (detectWebGL() && !reduceMotion) {
-  bootScene();
+  bootScene().catch(() => showPoster());
 } else {
   showPoster();
 }
@@ -40,5 +40,6 @@ async function bootScene() {
   ctx.onFrame(net.update);
   ctx.camera.position.set(0, 40, 60);
   ctx.camera.lookAt(0, 0, 0);
+  // Set asynchronously after bootScene resolves — consumers must not read at module load.
   window.__gcmp = { ctx, tier }; // journey hooks in next task
 }

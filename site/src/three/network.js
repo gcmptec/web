@@ -3,11 +3,12 @@ import * as THREE from 'three';
 const VERT = /* glsl */ `
 attribute float aSeed;
 uniform float uTime;
+uniform float uDpr;
 varying float vTwinkle;
 void main() {
   vec4 mv = modelViewMatrix * vec4(position, 1.0);
   vTwinkle = 0.45 + 0.55 * sin(uTime * 1.4 + aSeed * 6.2831);
-  gl_PointSize = (1.6 + 1.8 * vTwinkle) * (160.0 / -mv.z);
+  gl_PointSize = (1.6 + 1.8 * vTwinkle) * (160.0 / -mv.z) * uDpr;
   gl_Position = projectionMatrix * mv;
 }`;
 
@@ -40,7 +41,10 @@ export function buildNetwork(tier) {
   const mat = new THREE.ShaderMaterial({
     vertexShader: VERT,
     fragmentShader: FRAG,
-    uniforms: { uTime: { value: 0 } },
+    uniforms: {
+      uTime: { value: 0 },
+      uDpr: { value: Math.min(window.devicePixelRatio || 1, tier.dprCap) },
+    },
     transparent: true,
     depthWrite: false,
     blending: THREE.AdditiveBlending,
