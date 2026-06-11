@@ -15,6 +15,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/png" href="./favicon.png" />
   <script type="module" src="/src/main.js"></script>
+  <noscript><style>#preloader { display: none; }</style></noscript>
 </head>
 <body>
 
@@ -58,7 +59,7 @@
           </div>
           <div class="chapter-visual">
             <div class="wave" aria-label="Live audio waveform"></div>
-            <p class="coords">📍 −24.6282° S, 25.9231° E · Gaborone</p>
+            <p class="coords"><span aria-hidden="true">📍</span> −24.6282° S, 25.9231° E · Gaborone</p>
           </div>
         </div>
       </section>
@@ -188,11 +189,11 @@
           <label>Email <small>(optional)</small>
             <input name="email" type="email" maxlength="120" autocomplete="email" />
           </label>
-          <p id="form-error" class="form-error" hidden></p>
+          <p id="form-error" class="form-error" role="alert" hidden></p>
           <button class="btn btn-solid btn-wide" type="submit">Apply for the pilot</button>
           <p class="form-note">We reply within 48 hours. No spam, no resale of your details.</p>
         </form>
-        <div id="form-success" class="form-success" hidden>
+        <div id="form-success" class="form-success" role="status" hidden>
           <h3>Application received.</h3>
           <p>We'll be in touch within 48 hours. Signal sent — no need to explain.</p>
         </div>

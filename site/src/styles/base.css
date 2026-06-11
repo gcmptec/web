@@ -8,12 +8,17 @@
   --red: #EF4444;
   --text: #E8F0FF;
   --text-2: #7D92B8;
-  --text-3: #4A5E7A;
+  --text-3: #6B7FA3;
   --font: 'Inter', system-ui, sans-serif;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: auto; }
+:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
 body {
   background: var(--bg);
   color: var(--text-2);
