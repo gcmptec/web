@@ -98,9 +98,9 @@
 .classes.locked-state li[data-class='crime'] .cname { color: var(--green); font-weight: 800; }
 .classes.locked-state li[data-class='crime'] .fill { background: var(--green); box-shadow: 0 0 18px rgba(0, 255, 148, 0.6); }
 
-/* no-JS / reduced baseline: bars show final values when JS doesn't run */
-.no-js .classes .fill { width: 8%; }
-.no-js .classes li[data-class='crime'] .fill { width: 96%; }
+/* no-JS / reduced-motion baseline: bars show final values when JS doesn't animate */
+body.no-js .classes .fill { width: 8%; }
+body.no-js .classes li[data-class='crime'] .fill { width: 96%; }
 
 /* routed */
 .console {

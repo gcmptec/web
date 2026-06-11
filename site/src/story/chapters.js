@@ -17,6 +17,9 @@ export function initChapters() {
     resolved();
     reveals();
   });
+  mm.add('(prefers-reduced-motion: reduce)', () => {
+    document.body.classList.add('no-js');
+  });
   // reduced motion: CSS baseline is fully readable; no animations registered.
 }
 
