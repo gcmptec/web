@@ -77,10 +77,18 @@ export function buildPulse() {
     path.getPoint(Math.min(Math.max(p, 0), 1), signal.position);
     if (p >= 0.99 && !arrived) {
       arrived = true;
-      gsap.fromTo(disp.material, { opacity: 0.4 }, { opacity: 1, duration: 0.5 });
-      gsap.fromTo(disp.scale, { x: 2.2, y: 2.2, z: 2.2 }, { x: 4, y: 4, z: 4, duration: 0.5, ease: 'back.out(3)' });
+      gsap.killTweensOf(disp.material);
+      gsap.killTweensOf(disp.scale);
+      gsap.to(disp.material, { opacity: 1, duration: 0.5 });
+      gsap.to(disp.scale, { x: 4, y: 4, z: 4, duration: 0.5, ease: 'back.out(3)' });
     }
-    if (p < 0.9) arrived = false;
+    if (p < 0.9) {
+      arrived = false;
+      gsap.killTweensOf(disp.material);
+      gsap.killTweensOf(disp.scale);
+      gsap.to(disp.material, { opacity: 0.4, duration: 0.3 });
+      gsap.to(disp.scale, { x: 2.2, y: 2.2, z: 2.2, duration: 0.3 });
+    }
   }
 
   return { group, firePress, setSignalProgress };

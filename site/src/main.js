@@ -20,6 +20,13 @@ lenis.on('scroll', ScrollTrigger.update);
 gsap.ticker.add((t) => lenis.raf(t * 1000));
 gsap.ticker.lagSmoothing(0);
 
+// deep-link: scroll to hash on load
+if (window.location.hash) {
+  try {
+    lenis.scrollTo(window.location.hash, { immediate: true });
+  } catch (_) {}
+}
+
 // anchor links scroll smoothly
 document.querySelectorAll('a[href^="#"]').forEach((a) => {
   a.addEventListener('click', (e) => {

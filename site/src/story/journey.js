@@ -53,5 +53,10 @@ export function initJourney({ camera, pulse }) {
         scrub: 0.5,
       },
     });
+
+    return () => {
+      Object.assign(cam, KEYS[0]);
+      apply();
+    };
   });
 }
