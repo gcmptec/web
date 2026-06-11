@@ -1,3 +1,7 @@
+import { initPreloader } from './preloader.js';
+
+initPreloader();
+
 import './styles/base.css';
 import './styles/sections.css';
 import '@fontsource/inter/400.css';
