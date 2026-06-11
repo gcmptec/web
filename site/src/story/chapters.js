@@ -22,6 +22,7 @@ export function initChapters() {
 
 function buildWave() {
   const wave = document.querySelector('#captured .wave');
+  if (!wave) return;
   for (let i = 0; i < 44; i++) wave.appendChild(document.createElement('span'));
 }
 
@@ -38,16 +39,18 @@ function chapterIntro(sel) {
 }
 
 function hero() {
-  const split = new SplitText('#hero h1', { type: 'words' });
-  gsap.from(split.words, {
-    yPercent: 110, opacity: 0, stagger: 0.06, duration: 0.9, ease: 'power3.out', delay: 0.25,
-  });
-  gsap.from('#hero .kicker, #hero .hero-sub, #hero .scroll-cue', {
-    opacity: 0, y: 18, stagger: 0.12, duration: 0.7, delay: 0.9,
-  });
   gsap.to('#hero .hero-inner', {
     opacity: 0, y: -90, ease: 'none',
     scrollTrigger: { trigger: '#hero', start: 'top top', end: '60% top', scrub: true },
+  });
+  document.fonts.ready.then(() => {
+    const split = new SplitText('#hero h1', { type: 'words' });
+    gsap.from(split.words, {
+      yPercent: 110, opacity: 0, stagger: 0.06, duration: 0.9, ease: 'power3.out', delay: 0.25,
+    });
+    gsap.from('#hero .kicker, #hero .hero-sub, #hero .scroll-cue', {
+      opacity: 0, y: 18, stagger: 0.12, duration: 0.7, delay: 0.9,
+    });
   });
 }
 
@@ -63,7 +66,6 @@ function captured() {
   gsap.to('#captured .wave span', {
     scaleY: () => gsap.utils.random(0.15, 1),
     duration: 0.22,
-    repeat: -1,
     repeatRefresh: true,
     ease: 'sine.inOut',
     stagger: { each: 0.02, repeat: -1 },
@@ -84,11 +86,13 @@ function understood() {
     tl.to(`#understood li[data-class="${cls}"] .pct`, { textContent: pct, snap: { textContent: 1 }, duration: 1.1 }, 'race');
   }
   const list = document.querySelector('#understood .classes');
-  tl.to({}, {
-    duration: 0.01,
-    onComplete: () => list.classList.add('locked-state'),
-    onReverseComplete: () => list.classList.remove('locked-state'),
-  }, '+=0.15');
+  if (list) {
+    tl.to({}, {
+      duration: 0.01,
+      onComplete: () => list.classList.add('locked-state'),
+      onReverseComplete: () => list.classList.remove('locked-state'),
+    }, '+=0.15');
+  }
 }
 
 function routed() {
@@ -99,7 +103,7 @@ function routed() {
     .from('#routed .console .row', { x: -18, opacity: 0, stagger: 0.09, duration: 0.4 })
     .fromTo('#routed .dispatch-btn',
       { boxShadow: '0 0 0 0 rgba(0,255,148,0.5)' },
-      { boxShadow: '0 0 0 18px rgba(0,255,148,0)', duration: 0.9, repeat: 2 });
+      { boxShadow: '0 0 0 18px rgba(0,255,148,0)', duration: 0.9, repeat: 2, clearProps: 'boxShadow' });
 }
 
 function resolved() {

@@ -49,7 +49,7 @@ function showPoster() {
 }
 
 if (detectWebGL() && !reduceMotion) {
-  bootScene().catch(() => showPoster());
+  bootScene().then(() => ScrollTrigger.refresh()).catch(() => showPoster());
 } else {
   showPoster();
 }
