@@ -2,26 +2,43 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## Commands
+## What this repo is
+
+The GCMP Security marketing site — a hand-built one-page scroll experience
+("Follow the Signal"). Source lives in `site/` (Vite + vanilla JS + GSAP
+ScrollTrigger/SplitText + Three.js + Lenis). The repo **root** holds the built
+output, because GitHub Pages serves this branch (`sub`) from the root at
+https://gcmptec.github.io/web/.
+
+## Commands (run from site/)
 
 ```bash
-flutter pub get          # Install dependencies
-flutter run              # Run the app (defaults to connected device/browser)
-flutter run -d chrome    # Run specifically in Chrome
-flutter build web        # Build for web (output: build/web/)
-flutter analyze          # Lint (uses flutter_lints via analysis_options.yaml)
-flutter test             # Run tests
-flutter test test/widget_test.dart  # Run a single test file
+npm install        # install dependencies
+npm run dev        # dev server at http://127.0.0.1:5173/web/
+npm run build      # production build → site/dist/
+npm run preview    # serve the build at http://127.0.0.1:4173/web/
+npm test           # vitest (form validation, quality tiering)
 ```
 
 ## Architecture
 
-This is a Flutter multi-platform project targeting web, iOS, Android, Windows, Linux, and macOS.
+- `site/index.html` — all copy, as real HTML (SEO/accessibility baseline; page must read with JS off)
+- `site/src/main.js` — boot: preloader, Lenis+ScrollTrigger, scene (lazy), form
+- `site/src/three/` — scene.js (renderer/loop), network.js (node field), pulse.js (press/signal), quality.js (device tiers, **unit-tested**)
+- `site/src/story/` — journey.js (scroll-scrubbed camera), chapters.js (DOM animations, gsap.matchMedia reduced-motion aware)
+- `site/src/form-validate.js` (**unit-tested**) + form.js + firebase.js (lazy chunk) — pilot form → Firestore `pilot_applications` in project `gcmpvoice`. Server-side rules are deployed from the app repo — see `docs/SECURITY-NOTES.md`.
 
-**Entry point:** `lib/main.dart` — defines the `MaterialApp` widget tree. All Dart application code lives under `lib/`.
+## Deploy
 
-**Web shell:** `web/index.html` loads `flutter_bootstrap.js`, which bootstraps the compiled Dart-to-JS output. `web/manifest.json` configures PWA metadata.
+```powershell
+cd site; npm run build
+robocopy site\dist . /E     # from repo root
+git add -A; git commit; git push origin sub
+```
 
-**Lint config:** `analysis_options.yaml` extends `package:flutter_lints/flutter.yaml`. Run `flutter analyze` to check for issues before committing.
+## Gotchas
 
-The project currently has a single screen (Hello World scaffold) in `lib/main.dart`.
+- Base href is `/web/` (set in vite.config.js) — never hardcode absolute asset paths.
+- Pinned sections use CSS `position: sticky`, not ScrollTrigger pins.
+- Fallback ladder: no WebGL → poster + CSS pulse; prefers-reduced-motion → static page (body.no-js bar widths).
+- All lib files are UTF-8; if mojibake (â€, â†) ever appears, fix with ftfy wholesale, not by hand.
