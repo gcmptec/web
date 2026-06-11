@@ -40,9 +40,11 @@ export function initPilotForm() {
       form.hidden = true;
       okBox.hidden = false;
     } catch {
-      errBox.innerHTML =
-        'Something went wrong sending your application. Email us instead: ' +
-        '<a href="mailto:tsotlhedidintle@gmail.com">tsotlhedidintle@gmail.com</a>';
+      errBox.textContent = 'Something went wrong sending your application. Email us instead: ';
+      const link = document.createElement('a');
+      link.href = 'mailto:tsotlhedidintle@gmail.com';
+      link.textContent = 'tsotlhedidintle@gmail.com';
+      errBox.append(link);
       errBox.hidden = false;
       busy = false;
       btn.disabled = false;

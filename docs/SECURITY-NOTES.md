@@ -35,11 +35,11 @@ match /pilot_applications/{doc} {
 
 `allow read: if false` is what keeps applicant PII (names, phones, emails) private —
 never relax it for the web client. Field caps mirror the client-side `maxLength`
-limits in `lib/who_and_pilot.dart`.
+limits in `site/src/form-validate.js`.
 
 ## Other standing notes
 
-- The Firebase web config in `lib/firebase_options.dart` is public by design
+- The Firebase web config in `site/src/firebase.js` is public by design
   (API key is an identifier, not a secret). Rules are the security boundary.
 - `GcmpVoice` (ML training notebook) was untracked from the deploy branch so it is
   no longer served from the public site. The canonical copy lives on `main`

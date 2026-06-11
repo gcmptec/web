@@ -1,8 +1,8 @@
 import * as THREE from 'three';
 import gsap from 'gsap';
 
-export const PRESS_POINT = new THREE.Vector3(0, 0.4, 0);
-export const DISPATCH_POINT = new THREE.Vector3(24, 0.4, -18);
+const PRESS_POINT = new THREE.Vector3(0, 0.4, 0);
+const DISPATCH_POINT = new THREE.Vector3(24, 0.4, -18);
 
 function glowTexture() {
   const c = document.createElement('canvas');

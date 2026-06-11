@@ -36,6 +36,9 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     target: 'es2022',
+    // Three.js chunk is intentionally large (~523 KB) and interaction-gated;
+    // suppress the default 500 KB warning.
+    chunkSizeWarningLimit: 600,
     rollupOptions: {
       output: {
         // Merge GSAP (core + all plugins) and Lenis into one vendor chunk.
