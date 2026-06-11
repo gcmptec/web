@@ -2,6 +2,7 @@ import { validatePilotForm } from './form-validate.js';
 
 export function initPilotForm() {
   const form = document.getElementById('pilot-form');
+  if (!form) return;
   const errBox = document.getElementById('form-error');
   const okBox = document.getElementById('form-success');
   const btn = form.querySelector('button[type="submit"]');
@@ -34,7 +35,8 @@ export function initPilotForm() {
     try {
       const { submitPilotApplication } = await import('./firebase.js');
       const id = await submitPilotApplication(fields);
-      console.info('pilot application id:', id);
+      if (import.meta.env.DEV) console.info('pilot application id:', id);
+      form.reset();
       form.hidden = true;
       okBox.hidden = false;
     } catch {
