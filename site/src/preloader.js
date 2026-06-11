@@ -1,11 +1,19 @@
 export function initPreloader() {
   const el = document.getElementById('preloader');
   if (!el) return;
-  if (sessionStorage.getItem('gcmp-seen')) {
+  // sessionStorage throws when all cookies/storage are blocked — never let
+  // that take down the whole module (this runs first in main.js)
+  let seen = false;
+  try {
+    seen = !!sessionStorage.getItem('gcmp-seen');
+    sessionStorage.setItem('gcmp-seen', '1');
+  } catch {
+    /* storage unavailable: treat as first visit */
+  }
+  if (seen) {
     el.remove();
     return;
   }
-  sessionStorage.setItem('gcmp-seen', '1');
   const done = () => {
     el.classList.add('done');
     setTimeout(() => el.remove(), 700);
