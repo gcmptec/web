@@ -1,3 +1,16 @@
+/**
+ * main.js — critical-path bootstrap only
+ *
+ * Only the minimum needed before first paint lives here:
+ *   • preloader (must run first so the overlay appears immediately)
+ *   • CSS + fonts (Vite inlines/preloads these)
+ *   • pilot-form event binding (tiny; no GSAP dependency)
+ *
+ * Everything GSAP / Lenis / Three.js is in animate.js, loaded via a dynamic
+ * import scheduled with requestIdleCallback.  This moves ~130 KB of JS
+ * evaluation out of the TBT window while the preloader covers the page.
+ */
+
 import { initPreloader } from './preloader.js';
 
 initPreloader();
@@ -8,78 +21,24 @@ import '@fontsource/inter/400.css';
 import '@fontsource/inter/700.css';
 import '@fontsource/inter/900.css';
 
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { SplitText } from 'gsap/SplitText';
-import Lenis from 'lenis';
-
-import { detectWebGL, getQualityTier } from './three/quality.js';
 import { initPilotForm } from './form.js';
-import { initChapters } from './story/chapters.js';
-
-gsap.registerPlugin(ScrollTrigger, SplitText);
-
-// smooth scroll
-const lenis = new Lenis();
-lenis.on('scroll', ScrollTrigger.update);
-gsap.ticker.add((t) => lenis.raf(t * 1000));
-gsap.ticker.lagSmoothing(0);
-
-// deep-link: scroll to hash on load
-if (window.location.hash) {
-  try {
-    lenis.scrollTo(window.location.hash, { immediate: true });
-  } catch (_) {}
-}
-
-// anchor links scroll smoothly
-document.querySelectorAll('a[href^="#"]').forEach((a) => {
-  a.addEventListener('click', (e) => {
-    e.preventDefault();
-    lenis.scrollTo(a.getAttribute('href'), { offset: 0 });
-  });
-});
 
 initPilotForm();
-initChapters();
 
-const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const canvas = document.getElementById('gl');
+// ── deferred animation layer ────────────────────────────────────────────────
+// The preloader covers the viewport for at least 500 ms, so scheduling the
+// animation layer idle gives a safe window: GSAP + Lenis + ScrollTrigger +
+// Three.js all parse and evaluate after the browser has painted the shell.
+//
+// requestIdleCallback fallback: setTimeout 1500 ms — on browsers without rIC
+// (e.g. Safari < 16.4) we still defer long enough to be past FCP.
+// The {timeout: 2500} cap matches the preloader's own max-delay, so Three.js
+// never waits longer than the preloader already keeps the page covered.
 
-function showPoster() {
-  canvas.remove();
-  document.getElementById('poster-fallback').hidden = false;
-  document.body.classList.add('no-webgl');
-}
+const scheduleIdle = typeof requestIdleCallback === 'function'
+  ? (cb) => requestIdleCallback(cb, { timeout: 2500 })
+  : (cb) => setTimeout(cb, 1500);
 
-if (detectWebGL() && !reduceMotion) {
-  bootScene().then(() => ScrollTrigger.refresh()).catch(() => showPoster());
-} else {
-  showPoster();
-}
-
-async function bootScene() {
-  const tier = getQualityTier({
-    cores: navigator.hardwareConcurrency,
-    width: window.innerWidth,
-    dpr: window.devicePixelRatio,
-  });
-  const [{ initScene }, { buildNetwork }, { buildPulse }, { initJourney }] = await Promise.all([
-    import('./three/scene.js'),
-    import('./three/network.js'),
-    import('./three/pulse.js'),
-    import('./story/journey.js'),
-  ]);
-  const ctx = initScene(canvas, tier, showPoster);
-  const net = buildNetwork(tier);
-  ctx.scene.add(net.group);
-  ctx.onFrame(net.update);
-
-  const pulse = buildPulse();
-  ctx.scene.add(pulse.group);
-
-  initJourney({ camera: ctx.camera, pulse });
-
-  // Set asynchronously after bootScene resolves — consumers must not read at module load.
-  window.__gcmp = { ctx, tier };
-}
+scheduleIdle(() => {
+  import('./animate.js').then(({ initAnimations }) => initAnimations());
+});
