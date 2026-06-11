@@ -19,6 +19,7 @@ export function initChapters() {
   });
   mm.add('(prefers-reduced-motion: reduce)', () => {
     document.body.classList.add('no-js');
+    return () => document.body.classList.remove('no-js');
   });
   // reduced motion: CSS baseline is fully readable; no animations registered.
 }
