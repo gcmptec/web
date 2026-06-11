@@ -11,6 +11,7 @@ import Lenis from 'lenis';
 
 import { detectWebGL, getQualityTier } from './three/quality.js';
 import { initPilotForm } from './form.js';
+import { initChapters } from './story/chapters.js';
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -36,6 +37,7 @@ document.querySelectorAll('a[href^="#"]').forEach((a) => {
 });
 
 initPilotForm();
+initChapters();
 
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const canvas = document.getElementById('gl');
