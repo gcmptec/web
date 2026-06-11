@@ -98,7 +98,7 @@ export function initAnimations() {
     bootScene().then(() => ScrollTrigger.refresh()).catch(() => showPoster());
   }
 
-  const interactionEvents = ['scroll', 'touchstart', 'click', 'keydown', 'pointermove'];
+  const interactionEvents = ['scroll', 'touchstart', 'click', 'keydown'];
   interactionEvents.forEach((ev) => {
     window.addEventListener(ev, startScene, { once: true, passive: true, capture: true });
   });
