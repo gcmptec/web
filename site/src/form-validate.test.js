@@ -58,4 +58,14 @@ describe('validatePilotForm', () => {
       'Other',
     ]);
   });
+
+  it('returns an error for null/undefined input instead of throwing', () => {
+    expect(() => validatePilotForm(null)).not.toThrow();
+    expect(validatePilotForm(null)).toMatch(/full name/i);
+    expect(() => validatePilotForm(undefined)).not.toThrow();
+  });
+
+  it('accepts a dot-separated international phone number', () => {
+    expect(validatePilotForm({ ...valid, phone: '+267.76.436.923' })).toBeNull();
+  });
 });

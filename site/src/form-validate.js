@@ -5,7 +5,8 @@ export const ROLES = [
   'Other',
 ];
 
-export function validatePilotForm({ name = '', company = '', role = '', phone = '', email = '' }) {
+export function validatePilotForm(fields = {}) {
+  const { name = '', company = '', role = '', phone = '', email = '' } = fields || {};
   if (!name.trim()) return 'Please enter your full name.';
   if (name.trim().length > 80) return 'That name is too long.';
   if (!company.trim()) return 'Please enter your company or organisation.';
@@ -15,7 +16,7 @@ export function validatePilotForm({ name = '', company = '', role = '', phone = 
   const p = phone.trim();
   if (!p) return 'Please enter a phone or WhatsApp number.';
   const digits = p.replace(/\D/g, '');
-  if (digits.length < 7 || digits.length > 15 || !/^\+?[\d\s\-()]+$/.test(p)) {
+  if (digits.length < 7 || digits.length > 15 || !/^\+?[\d\s\-.()]+$/.test(p)) {
     return "That phone number doesn't look right — please check it.";
   }
 
