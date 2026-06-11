@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GCMP Security — Signal first. Explain later.</title>
+  <meta name="description" content="GCMP is a panic platform for security companies in Botswana. One press captures the emergency, machine learning classifies it into one of seven classes, and your dispatcher is moving in seconds." />
+  <link rel="canonical" href="https://gcmptec.github.io/web/" />
+  <meta name="theme-color" content="#0E0E1C" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="GCMP Security — Signal first. Explain later." />
+  <meta property="og:description" content="A panic platform for security companies. One press. Classified by ML. Dispatched in seconds." />
+  <meta property="og:url" content="https://gcmptec.github.io/web/" />
+  <meta property="og:image" content="https://gcmptec.github.io/web/og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" type="image/png" href="./favicon.png" />
+  <script type="module" src="/src/main.js"></script>
+</head>
+<body>
+
+  <div id="preloader" aria-hidden="true">
+    <img src="./logo.png" alt="" width="72" height="72" />
+    <div class="preloader-ring"></div>
+  </div>
+
+  <canvas id="gl" aria-hidden="true"></canvas>
+  <div id="poster-fallback" hidden aria-hidden="true">
+    <div class="css-pulse"></div>
+  </div>
+
+  <header id="nav">
+    <a class="brand" href="#hero">
+      <img src="./logo.png" alt="GCMP logo" width="34" height="34" />
+      <span>GCMP</span>
+    </a>
+    <a class="btn btn-solid" href="#pilot">Apply for pilot</a>
+  </header>
+
+  <main>
+    <!-- Beat 1 — The Press -->
+    <section id="hero" class="beat">
+      <div class="pin-inner hero-inner">
+        <p class="kicker">SIGNAL FIRST. EXPLAIN LATER.</p>
+        <h1>When something goes wrong, the last thing you should need is words.</h1>
+        <p class="hero-sub">GCMP is a panic platform for security companies. One press captures the emergency, machine learning understands it, and the right team is moving in seconds.</p>
+        <p class="scroll-cue">Scroll — follow the signal<span class="cue-line"></span></p>
+      </div>
+    </section>
+
+    <div id="story">
+      <!-- Beat 2 — Captured -->
+      <section id="captured" class="beat chapter">
+        <div class="pin-inner">
+          <div class="chapter-copy">
+            <p class="kicker">00:00 — THE PRESS</p>
+            <h2>One press. No call. No questions.</h2>
+            <p>A three-second hold captures ten seconds of live audio and an exact GPS fix — and sends them before anyone has to say a word.</p>
+          </div>
+          <div class="chapter-visual">
+            <div class="wave" aria-label="Live audio waveform"></div>
+            <p class="coords">📍 −24.6282° S, 25.9231° E · Gaborone</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Beat 3 — Understood -->
+      <section id="understood" class="beat chapter">
+        <div class="pin-inner">
+          <div class="chapter-copy">
+            <p class="kicker">00:04 — THE CLASSIFIER</p>
+            <h2>Machine learning reads the situation.</h2>
+            <p>A purpose-built classifier listens to the signal and sorts it into one of seven emergency classes — before a human picks up.</p>
+          </div>
+          <div class="chapter-visual">
+            <ul class="classes">
+              <li data-class="medical"><span class="cname">Medical</span><span class="bar"><span class="fill"></span></span><span class="pct">0</span></li>
+              <li data-class="fire"><span class="cname">Fire</span><span class="bar"><span class="fill"></span></span><span class="pct">0</span></li>
+              <li data-class="crime"><span class="cname">Crime</span><span class="bar"><span class="fill"></span></span><span class="pct">0</span></li>
+              <li data-class="accident"><span class="cname">Accident</span><span class="bar"><span class="fill"></span></span><span class="pct">0</span></li>
+              <li data-class="disaster"><span class="cname">Disaster</span><span class="bar"><span class="fill"></span></span><span class="pct">0</span></li>
+              <li data-class="domestic"><span class="cname">Domestic</span><span class="bar"><span class="fill"></span></span><span class="pct">0</span></li>
+              <li data-class="unclear"><span class="cname">Unclear</span><span class="bar"><span class="fill"></span></span><span class="pct">0</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Beat 4 — Routed -->
+      <section id="routed" class="beat chapter">
+        <div class="pin-inner">
+          <div class="chapter-copy">
+            <p class="kicker">00:07 — THE DISPATCH</p>
+            <h2>The right team. The first time.</h2>
+            <p>The classified signal lands on the right dispatcher's screen with class, location and audio attached. One tap sends the nearest responder.</p>
+          </div>
+          <div class="chapter-visual">
+            <div class="console" role="img" aria-label="Dispatcher console showing an incoming classified signal">
+              <p class="console-head">INCOMING SIGNAL</p>
+              <p class="row row-class">CRIME <em>96% confidence</em></p>
+              <p class="row">📍 Extension 12, Block 9 · Gaborone</p>
+              <p class="row">🎙 0:10 audio attached</p>
+              <button class="dispatch-btn" type="button" tabindex="-1">Dispatch unit</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Beat 5 — Resolved -->
+      <section id="resolved" class="beat chapter">
+        <div class="pin-inner">
+          <div class="chapter-copy">
+            <h2>Minutes earlier. Every time.</h2>
+          </div>
+          <div class="chapter-visual">
+            <ol class="stamps">
+              <li><b>00:00</b><span>The press</span></li>
+              <li><b>00:04</b><span>Classified: crime</span></li>
+              <li><b>00:07</b><span>On the dispatcher's screen</span></li>
+              <li><b>00:09</b><span>Unit dispatched</span></li>
+            </ol>
+            <p class="kicker resolved-kicker">No "where are you?". No "can you repeat that?". The explaining already happened — automatically.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Beat 6 — The Pivot -->
+    <section id="pivot" class="beat solid">
+      <div class="wrap">
+        <h2 data-reveal>Now imagine being the company that catches it.</h2>
+        <p class="lead" data-reveal>GCMP is built for security companies. You run the control room — we give your dispatchers signals that already explain themselves.</p>
+
+        <div class="offer-grid">
+          <article class="offer" data-reveal>
+            <h3>Dispatch console</h3>
+            <p>A live queue of classified signals with location and audio. Your operators verify in seconds instead of interrogating callers.</p>
+          </article>
+          <article class="offer" data-reveal>
+            <h3>Responder app</h3>
+            <p>Secured routing and live, accuracy-gated GPS for your response units. The marker doesn't wander; your driver doesn't guess.</p>
+          </article>
+          <article class="offer" data-reveal>
+            <h3>Discreet tier</h3>
+            <p>A paid add-on your clients will ask for: covert triggers for the moments when openly reaching for a phone isn't safe.</p>
+          </article>
+        </div>
+
+        <div class="commercial" data-reveal>
+          <p class="big-line">You pay <b>BWP 15–25</b> per user per month. You sell at <b>BWP 50–80</b>. The margin is yours.</p>
+          <p class="anchor-note">For reference: ADT FindU retails around R49/month in South Africa — without ML classification.</p>
+        </div>
+
+        <ul class="proof" data-reveal>
+          <li>Patent filed (hardware)</li>
+          <li>Classifier live in production on Cloud Run</li>
+          <li>End-to-end verified on real devices</li>
+        </ul>
+        <p class="honest" data-reveal>We're pre-revenue and choosing our first three partners deliberately. Early means leverage.</p>
+      </div>
+    </section>
+
+    <!-- Beat 7 — Pilot -->
+    <section id="pilot" class="beat solid">
+      <div class="wrap narrow">
+        <p class="kicker" data-reveal>THE PILOT</p>
+        <h2 data-reveal>Free for 60 days. First three partners only.</h2>
+        <p class="lead" data-reveal>Run GCMP alongside your existing process. If it doesn't make your dispatch faster, walk away. After the pilot: a minimum three-month paid term.</p>
+
+        <form id="pilot-form" novalidate data-reveal>
+          <label>Full name
+            <input name="name" type="text" maxlength="80" autocomplete="name" required />
+          </label>
+          <label>Company / organisation
+            <input name="company" type="text" maxlength="120" autocomplete="organization" required />
+          </label>
+          <label>Your role
+            <select name="role" required>
+              <option value="" selected disabled>Select…</option>
+              <option>Owner / Director</option>
+              <option>Operations / Control room</option>
+              <option>Dispatcher</option>
+              <option>Other</option>
+            </select>
+          </label>
+          <label>Phone or WhatsApp
+            <input name="phone" type="tel" maxlength="20" autocomplete="tel" required />
+          </label>
+          <label>Email <small>(optional)</small>
+            <input name="email" type="email" maxlength="120" autocomplete="email" />
+          </label>
+          <p id="form-error" class="form-error" hidden></p>
+          <button class="btn btn-solid btn-wide" type="submit">Apply for the pilot</button>
+          <p class="form-note">We reply within 48 hours. No spam, no resale of your details.</p>
+        </form>
+        <div id="form-success" class="form-success" hidden>
+          <h3>Application received.</h3>
+          <p>We'll be in touch within 48 hours. Signal sent — no need to explain.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Beat 8 — FAQ -->
+    <section id="faq" class="beat solid">
+      <div class="wrap narrow">
+        <h2 data-reveal>Questions security companies ask</h2>
+        <details data-reveal>
+          <summary>What does it cost after the pilot?</summary>
+          <p>BWP 15–25 per user per month wholesale, depending on volume. You set your own retail — most partners price between BWP 50 and 80.</p>
+        </details>
+        <details data-reveal>
+          <summary>Does it replace our control room?</summary>
+          <p>No — it feeds it. Your dispatchers keep dispatching; they just stop interrogating panicked callers to find out what's happening and where.</p>
+        </details>
+        <details data-reveal>
+          <summary>What do our clients get?</summary>
+          <p>One button in the GCMP app. A three-second hold sends audio and location. Dispatch and response stay yours, under your brand relationship.</p>
+        </details>
+        <details data-reveal>
+          <summary>What about false alarms?</summary>
+          <p>The hold-to-send gate stops pocket presses, and every signal arrives with classification and audio attached — your operator verifies in seconds instead of calling back.</p>
+        </details>
+        <details data-reveal>
+          <summary>Where does the data live?</summary>
+          <p>On Google Cloud (Firebase and Cloud Run), encrypted in transit and at rest, with role-based access. Signal data is used for dispatch and audit, not resold.</p>
+        </details>
+        <details data-reveal>
+          <summary>What is the Discreet tier?</summary>
+          <p>A paid add-on for situations where visibly using a phone isn't safe — covert triggers with a confirmation haptic only the user notices.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap foot-grid">
+      <div>
+        <p class="foot-brand"><img src="./logo.png" alt="" width="28" height="28" /> GCMP Security (Pty) Ltd</p>
+        <p class="foot-tag">Signal first. Explain later.</p>
+      </div>
+      <div class="foot-contact">
+        <a href="mailto:tsotlhedidintle@gmail.com">tsotlhedidintle@gmail.com</a>
+        <a href="tel:+26776436923">+267 76 436 923</a>
+        <a href="https://www.linkedin.com/in/didintle-motshubi-41944716a" rel="noopener" target="_blank">LinkedIn</a>
+      </div>
+    </div>
+    <p class="foot-legal">© 2026 GCMP Security (Pty) Ltd · Gaborone, Botswana</p>
+  </footer>
+
+</body>
+</html>
