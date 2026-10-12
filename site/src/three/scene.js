@@ -6,10 +6,10 @@ export function initScene(canvas, tier, onFatalLoss) {
     antialias: false,
     powerPreference: 'high-performance',
   });
-  renderer.setClearColor(0x0e0e1c, 1);
+  renderer.setClearColor(0x0d0d1a, 1);
 
   const scene = new THREE.Scene();
-  scene.fog = new THREE.Fog(0x0e0e1c, 60, 150);
+  scene.fog = new THREE.Fog(0x0d0d1a, 60, 150);
 
   const camera = new THREE.PerspectiveCamera(55, 1, 0.1, 320);
 

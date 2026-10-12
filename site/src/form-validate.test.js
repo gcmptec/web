@@ -1,3 +1,4 @@
+import { readFileSync } from 'node:fs';
 import { describe, it, expect } from 'vitest';
 import { validatePilotForm, ROLES } from './form-validate.js';
 
@@ -68,4 +69,11 @@ describe('validatePilotForm', () => {
   it('accepts a dot-separated international phone number', () => {
     expect(validatePilotForm({ ...valid, phone: '+267.76.436.923' })).toBeNull();
   });
+});
+
+// The live intake rejected 3 of 4 roles for months because the server list drifted from this one.
+it('apps-script intake accepts exactly the form roles', () => {
+  const gs = readFileSync(new URL('../apps-script/pilot-intake.gs', import.meta.url), 'utf8');
+  const serverRoles = JSON.parse(gs.match(/const ROLES = (\[.*?\]);/)[1].replace(/'/g, '"'));
+  expect(serverRoles).toEqual(ROLES);
 });

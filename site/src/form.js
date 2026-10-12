@@ -1,5 +1,8 @@
 import { validatePilotForm } from './form-validate.js';
 
+// Google Apps Script web app (site/apps-script/pilot-intake.gs): emails + logs to a Sheet.
+const ENDPOINT = 'https://script.google.com/macros/s/AKfycbynyuN3byxH5oKT85jeRGrSoCt_d7VD-A2B03ncAcp4dPidme_ZK9M9O8RQ_kQSqFCn/exec';
+
 export function initPilotForm() {
   const form = document.getElementById('pilot-form');
   if (!form) return;
@@ -33,9 +36,12 @@ export function initPilotForm() {
     btn.textContent = 'Sending…';
 
     try {
-      const { submitPilotApplication } = await import('./firebase.js');
-      const id = await submitPilotApplication(fields);
-      if (import.meta.env.DEV) console.info('pilot application id:', id);
+      // Simple form-encoded POST (no CORS preflight); the honeypot rides along.
+      const res = await fetch(ENDPOINT, {
+        method: 'POST',
+        body: new URLSearchParams({ ...fields, website: data.website || '' }),
+      });
+      if (!(await res.json()).ok) throw new Error('rejected');
       form.reset();
       form.hidden = true;
       okBox.hidden = false;

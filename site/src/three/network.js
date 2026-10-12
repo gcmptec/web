@@ -18,7 +18,7 @@ void main() {
   float d = length(gl_PointCoord - 0.5);
   if (d > 0.5) discard;
   float a = smoothstep(0.5, 0.0, d) * vTwinkle;
-  gl_FragColor = vec4(0.0, 1.0, 0.58, a * 0.85);
+  gl_FragColor = vec4(1.0, 1.0, 1.0, a * 0.4); // ink: decoration stays neutral
 }`;
 
 export function buildNetwork(tier) {
@@ -75,7 +75,7 @@ export function buildNetwork(tier) {
   }
   const lgeo = new THREE.BufferGeometry();
   lgeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(linkPos), 3));
-  const lmat = new THREE.LineBasicMaterial({ color: 0x00ff94, transparent: true, opacity: 0.07 });
+  const lmat = new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.05 });
   group.add(new THREE.LineSegments(lgeo, lmat));
 
   return {

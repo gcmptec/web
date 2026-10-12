@@ -33,8 +33,9 @@ function buildWave() {
 function chapterIntro(sel) {
   return gsap.timeline({
     scrollTrigger: {
-      trigger: `${sel} .pin-inner`,
-      start: 'top 35%',
+      // fire as the copy enters view, not after a screen of blank scrolling
+      trigger: `${sel} .chapter-copy`,
+      start: 'top 85%',
       toggleActions: 'play none none reverse',
     },
   }).from(`${sel} .chapter-copy > *`, {
@@ -106,8 +107,8 @@ function routed() {
     }, '-=0.2')
     .from('#routed .console .row', { x: -18, opacity: 0, stagger: 0.09, duration: 0.4 })
     .fromTo('#routed .dispatch-btn',
-      { boxShadow: '0 0 0 0 rgba(0,255,148,0.5)' },
-      { boxShadow: '0 0 0 18px rgba(0,255,148,0)', duration: 0.9, repeat: 2, clearProps: 'boxShadow' });
+      { boxShadow: '0 0 0 0 rgba(68,138,255,0.5)' },
+      { boxShadow: '0 0 0 18px rgba(68,138,255,0)', duration: 0.9, repeat: 2, clearProps: 'boxShadow' });
 }
 
 function resolved() {

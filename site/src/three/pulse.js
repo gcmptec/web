@@ -9,9 +9,10 @@ function glowTexture() {
   c.width = c.height = 64;
   const ctx = c.getContext('2d');
   const g = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
-  g.addColorStop(0, 'rgba(0,255,148,1)');
-  g.addColorStop(0.35, 'rgba(0,255,148,0.45)');
-  g.addColorStop(1, 'rgba(0,255,148,0)');
+  // white texture; each sprite tints it with a DS token
+  g.addColorStop(0, 'rgba(255,255,255,1)');
+  g.addColorStop(0.35, 'rgba(255,255,255,0.45)');
+  g.addColorStop(1, 'rgba(255,255,255,0)');
   ctx.fillStyle = g;
   ctx.fillRect(0, 0, 64, 64);
   return new THREE.CanvasTexture(c);
@@ -30,13 +31,13 @@ export function buildPulse() {
   const tex = glowTexture();
 
   // the press point — heartbeat
-  const core = glowSprite(tex, 0x00ff94, 1, 3);
+  const core = glowSprite(tex, 0xf44336, 1, 3); // sos
   core.position.copy(PRESS_POINT);
   gsap.to(core.scale, { x: 4.2, y: 4.2, z: 4.2, duration: 0.9, yoyo: true, repeat: -1, ease: 'sine.inOut' });
   group.add(core);
 
   // the dispatcher node — dim until the signal arrives
-  const disp = glowSprite(tex, 0x00ff94, 0.4, 2.2);
+  const disp = glowSprite(tex, 0x448aff, 0.4, 2.2); // accent
   disp.position.copy(DISPATCH_POINT);
   group.add(disp);
 
@@ -45,7 +46,7 @@ export function buildPulse() {
   for (let i = 0; i < 3; i++) {
     const ring = new THREE.Mesh(
       new THREE.RingGeometry(0.96, 1, 64),
-      new THREE.MeshBasicMaterial({ color: 0x00ff94, transparent: true, opacity: 0, side: THREE.DoubleSide, depthWrite: false }),
+      new THREE.MeshBasicMaterial({ color: 0xf44336, transparent: true, opacity: 0, side: THREE.DoubleSide, depthWrite: false }),
     );
     ring.rotation.x = -Math.PI / 2;
     ring.position.copy(PRESS_POINT);
@@ -54,7 +55,7 @@ export function buildPulse() {
   }
 
   // the travelling signal
-  const signal = glowSprite(tex, 0x9bffd6, 0, 2.4);
+  const signal = glowSprite(tex, 0xf44336, 0, 2.4); // sos
   group.add(signal);
   const path = new THREE.CatmullRomCurve3([
     PRESS_POINT.clone(),

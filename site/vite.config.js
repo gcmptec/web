@@ -50,10 +50,8 @@ export default defineConfig({
         // callback has everything cached and evaluates before FCP.
         //
         // Three.js: own chunk — interaction-gated, 523 KB, fetch on demand.
-        // Firebase: own chunk — lazy on form submit.
         manualChunks(id) {
           if (id.includes('node_modules/three')) return 'three.module';
-          if (id.includes('node_modules/firebase')) return 'firebase';
           if (
             id.includes('node_modules/gsap') ||
             id.includes('node_modules/lenis')
