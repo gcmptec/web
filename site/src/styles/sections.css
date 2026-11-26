@@ -14,6 +14,8 @@
   gap: 1.4rem;
 }
 .hero-sub { max-width: 560px; font-size: clamp(1rem, 2vw, 1.2rem); }
+.hero-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem 1rem; }
+.hero-cta span { color: var(--ink-muted); font-size: 0.85rem; }
 .scroll-cue {
   margin-top: 2.5rem;
   color: var(--ink-muted);

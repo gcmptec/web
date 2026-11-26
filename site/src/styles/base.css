@@ -112,6 +112,9 @@ a { color: var(--accent); text-decoration: none; }
   padding: 0.9rem clamp(1rem, 4vw, 3rem);
   background: linear-gradient(rgba(13, 13, 26, 0.85), rgba(13, 13, 26, 0));
 }
+.nav-actions { display: flex; gap: 0.6rem; }
+/* The hero carries the demo link on phones; two nav buttons don't fit. */
+@media (max-width: 600px) { .nav-demo { display: none; } }
 /* DS wordmark lockup: mark left, uppercase bold, 4px tracking, mark = 1.6x font size */
 .brand { display: flex; align-items: center; gap: 0.6rem; color: var(--ink); font-size: 18px; font-weight: 700; letter-spacing: 4px; }
 
