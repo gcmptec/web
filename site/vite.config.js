@@ -24,14 +24,14 @@ function preloadAnimVendor() {
     },
     transformIndexHtml(html) {
       if (!animVendorFile) return html;
-      const tag = `  <link rel="modulepreload" href="/web/${animVendorFile}" />\n`;
+      const tag = `  <link rel="modulepreload" href="/${animVendorFile}" />\n`;
       return html.replace('</head>', tag + '</head>');
     },
   };
 }
 
 export default defineConfig({
-  base: '/web/',
+  base: '/',
   plugins: [preloadAnimVendor()],
   build: {
     outDir: 'dist',
